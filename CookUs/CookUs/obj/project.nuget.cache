@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "3GAkvqnosgPceZKKzxEJbc3AaFRo1FX6xw2WaFalhDTvuIXD+oNDONka5RMW14QVsCApmRAquNQSifVOdtn1Bw==",
+  "dgSpecHash": "fd9Y+084jkJTROU6LihwsgvDkzFKNgokFBV1pNN6/c5mNwPY+xC2FlYYS0zVdf8fkUIXtnVJtqh1R2oCsSCSGA==",
   "success": false,
-  "projectFilePath": "A:\\A_Dossiers\\Documents\\Études\\Université\\Semestre 5 INFO\\C#.NET\\CookUs\\CookUs\\CookUs.csproj",
+  "projectFilePath": "A:\\A_Dossiers\\Documents\\Etudes\\Université\\Semestre 5 INFO\\C#.NET\\Recipes-MobileApp\\CookUs\\CookUs\\CookUs.csproj",
   "expectedPackageFiles": [
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages\\microsoft.windows.sdk.buildtools\\10.0.22621.1\\microsoft.windows.sdk.buildtools.10.0.22621.1.nupkg.sha512"
   ],
