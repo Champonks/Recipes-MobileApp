@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "aWWQKNAXxGwLWM3a7swWCKkNEx+2mjvpx95IaczwYVj3HzNT0nTwxdAyb3hUOMtSHzMyxW2gbEFbDMGNro9y/w==",
+  "dgSpecHash": "LK+V+UJA67Lvd2052viXq6yGcFS2vV4EHraEiHJD/vtoVehmqvTj0jvlEhKYXvaOwXtttNM7f/22od7UwEmScg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\gaeta\\Documents\\Semestre 5 INFO\\C#.NET\\Recipes-MobileApp\\CookUs\\CookUs\\CookUs.csproj",
+  "projectFilePath": "A:\\A_Dossiers\\Documents\\Etudes\\Université\\Semestre 5 INFO\\C#.NET\\Recipes-MobileApp\\CookUs\\CookUs\\CookUs.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\gaeta\\.nuget\\packages\\googlegson\\2.9.1\\googlegson.2.9.1.nupkg.sha512",
     "C:\\Users\\gaeta\\.nuget\\packages\\microsoft.extensions.configuration\\7.0.0\\microsoft.extensions.configuration.7.0.0.nupkg.sha512",
@@ -100,6 +100,7 @@
     "C:\\Users\\gaeta\\.nuget\\packages\\xamarin.kotlin.stdlib.jdk8\\1.7.10\\xamarin.kotlin.stdlib.jdk8.1.7.10.nupkg.sha512",
     "C:\\Users\\gaeta\\.nuget\\packages\\xamarin.kotlinx.coroutines.android\\1.6.4\\xamarin.kotlinx.coroutines.android.1.6.4.nupkg.sha512",
     "C:\\Users\\gaeta\\.nuget\\packages\\xamarin.kotlinx.coroutines.core.jvm\\1.6.4\\xamarin.kotlinx.coroutines.core.jvm.1.6.4.nupkg.sha512",
+    "C:\\Users\\gaeta\\.nuget\\packages\\microsoft.netcore.app.crossgen2.win-x64\\7.0.0\\microsoft.netcore.app.crossgen2.win-x64.7.0.0.nupkg.sha512",
     "C:\\Users\\gaeta\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.19041.27\\microsoft.windows.sdk.net.ref.10.0.19041.27.nupkg.sha512",
     "C:\\Users\\gaeta\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x64\\7.0.0\\microsoft.aspnetcore.app.runtime.win-x64.7.0.0.nupkg.sha512",
     "C:\\Users\\gaeta\\.nuget\\packages\\microsoft.windowsdesktop.app.runtime.win-x64\\7.0.0\\microsoft.windowsdesktop.app.runtime.win-x64.7.0.0.nupkg.sha512",
