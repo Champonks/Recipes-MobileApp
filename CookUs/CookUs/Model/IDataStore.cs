@@ -8,7 +8,7 @@ namespace CookUs.Model
 {
     public interface IDataStore
     {
-        //create all functions useful to manage a list of recipes async when it needs to be
+        //create all functions useful to manage a list of recipes async
         List<Recipe> Recipes { get; set; }
         Task<List<Recipe>> GetRecipesAsync();
         Task<Recipe> GetRecipeAsync(int id);

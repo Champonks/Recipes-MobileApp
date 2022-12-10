@@ -1,9 +1,13 @@
+using CookUs.Model;
+using CookUs.ViewModel;
+
 namespace CookUs.View;
 
 public partial class ViewRecipePage : ContentPage
 {
-	public ViewRecipePage()
-	{
-		InitializeComponent();
-	}
+    public ViewRecipePage(ViewRecipeViewModel viewRecipeViewModel)
+    {
+        InitializeComponent();
+        BindingContext = viewRecipeViewModel;
+    }
 }

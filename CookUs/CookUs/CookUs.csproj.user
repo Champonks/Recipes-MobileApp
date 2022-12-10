@@ -14,10 +14,10 @@
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
   <ItemGroup>
-    <MauiXaml Update="View\Cart.xaml">
+    <MauiXaml Update="View\AddRecipe.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
-    <MauiXaml Update="View\PreviewRecipe.xaml">
+    <MauiXaml Update="View\Cart.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>
     <MauiXaml Update="View\RecipesListPage.xaml">
