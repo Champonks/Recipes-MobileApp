@@ -1,11 +1,14 @@
-﻿namespace CookUs;
+﻿using CookUs.Model;
+
+namespace CookUs;
 
 public partial class App : Application
 {
 	public App()
 	{
 		InitializeComponent();
-
-		MainPage = new AppShell();
-	}
+        
+        DependencyService.Register<MockDataStore>();
+        MainPage = new AppShell();
+    }
 }
