@@ -13,17 +13,18 @@ namespace CookUs.ViewModel
     {
         public ObservableCollection<Recipe> Recipes { get; } = new();
         public Command AddRecipeCommand { get; }
+        public Command RefreshRecipes { get; }
 
         public RecipesListViewModel()
         {
             Title = "Recipes";
             LoadDataAsync();
             AddRecipeCommand = new Command(OnAddRecipe);
+            RefreshRecipes = new Command(LoadDataAsync);
         }
-
-        private async void ShowRecipesAsync(object sender, EventArgs e)
+        
+        public async Task ShowRecipeAsync(Recipe recipe)
         {
-            Recipe recipe = ((VisualElement)sender).BindingContext as Recipe;
             if (recipe == null) return;
             
             await Shell.Current.GoToAsync(nameof(ViewRecipePage), true, new Dictionary<string, object>

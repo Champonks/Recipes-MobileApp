@@ -30,9 +30,9 @@ namespace CookUs.Model
                 "Add any toppings"
             };
 
-            Recipe r1 = new Recipe("Burger", "Miam miam", "25min", ingredients, steps);
-            Recipe r2 = new Recipe("Pasta", "Miam miam", "30min", ingredients, steps);
-            Recipe r3 = new Recipe("Pizza", "MAMAMIA", "45min", ingredients, steps);
+            Recipe r1 = new("Burger", "Miam miam", "25min", ingredients, steps);
+            Recipe r2 = new("Pasta", "Italia", "30min", ingredients, steps);
+            Recipe r3 = new("Pizza", "MAMAMIA", "45min", ingredients, steps);
 
             Recipes.Add(r1);
             Recipes.Add(r2);

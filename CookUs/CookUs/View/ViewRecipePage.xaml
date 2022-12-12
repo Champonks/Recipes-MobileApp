@@ -7,7 +7,7 @@
              Title="{Binding Recipe.Name}">
     <ScrollView>
         <VerticalStackLayout>
-            <Image Source="{Binding Recipe.Image}" />
+            <Image HeightRequest="300" Source="{Binding Recipe.Image}" />
             <Label Text="{Binding Recipe.Time}" FontSize="Medium" />
             <Label Text="{Binding Recipe.Description}" FontSize="Medium" />
         </VerticalStackLayout>

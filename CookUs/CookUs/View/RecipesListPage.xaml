@@ -8,7 +8,7 @@
              Title="{Binding Title}">
 
     <StackLayout>
-        <RefreshView IsRefreshing="{Binding IsRefreshing}">
+        <RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshRecipes}">
 
             <CollectionView ItemsSource="{Binding Recipes}">
                 <CollectionView.ItemTemplate >
@@ -16,9 +16,9 @@
                         <Frame BorderColor="Gray"
                             CornerRadius="6"
                             Margin="9">
-                            <!--<Frame.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="ShowRecipesAsync"/>
-                            </Frame.GestureRecognizers>-->
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="RecipeDetailsAsync_Tapped"/>
+                            </Frame.GestureRecognizers>
                             <StackLayout>
                                 <Image HeightRequest="100" Source="{Binding Image}" />
                                 <Label Margin="9" >

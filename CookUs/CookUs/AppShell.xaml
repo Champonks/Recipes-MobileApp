@@ -8,7 +8,7 @@
 
     <TabBar FlyoutDisplayOptions="AsMultipleItems">
 
-        <Tab Title="Home" Icon="home.svg">
+        <Tab Title="Home" Icon="home.png">
             <ShellContent ContentTemplate="{DataTemplate view:Home}" />
         </Tab>
 
