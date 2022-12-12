@@ -10,15 +10,15 @@
     <StackLayout>
         <RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshRecipes}">
 
-            <CollectionView ItemsSource="{Binding Recipes}">
+            <CollectionView ItemsSource="{Binding Recipes}" SelectionMode="Single" SelectedItem="{Binding SelectedRecipe}" SelectionChangedCommand="{Binding ViewRecipeDetailsCommand}">
                 <CollectionView.ItemTemplate >
                     <DataTemplate x:DataType="model:Recipe">
                         <Frame BorderColor="Gray"
                             CornerRadius="6"
                             Margin="9">
-                            <Frame.GestureRecognizers>
+                            <!--<Frame.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="RecipeDetailsAsync_Tapped"/>
-                            </Frame.GestureRecognizers>
+                            </Frame.GestureRecognizers>-->
                             <StackLayout>
                                 <Image HeightRequest="100" Source="{Binding Image}" />
                                 <Label Margin="9" >
