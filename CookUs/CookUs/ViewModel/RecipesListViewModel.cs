@@ -12,9 +12,7 @@ namespace CookUs.ViewModel
     public class RecipesListViewModel : BaseViewModel
     {
         public ObservableCollection<Recipe> Recipes { get; } = new();
-        public Recipe SelectedRecipe { get; set; }
         public Command AddRecipeCommand { get; }
-        public Command ViewRecipeDetailsCommand { get; }
         public Command RefreshRecipes { get; }
 
         public RecipesListViewModel()
@@ -22,17 +20,16 @@ namespace CookUs.ViewModel
             Title = "Recipes";
             LoadDataAsync();
             AddRecipeCommand = new Command(OnAddRecipe);
-            ViewRecipeDetailsCommand = new Command(OnViewRecipeDetails);
             RefreshRecipes = new Command(LoadDataAsync);
         }
-        
-        private async void OnViewRecipeDetails()
+
+        public async Task OnViewRecipeDetails(Recipe recipe)
         {
-            if (SelectedRecipe == null) return;
+            if (recipe == null) return;
             
             await Shell.Current.GoToAsync(nameof(ViewRecipePage), true, new Dictionary<string, object>
             {
-                {"Recipe", SelectedRecipe }
+                {"Recipe", recipe }
             });
 
         }

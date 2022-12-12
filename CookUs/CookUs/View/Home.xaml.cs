@@ -1,10 +1,14 @@
-﻿namespace CookUs.View;
+﻿using CookUs.ViewModel;
+
+namespace CookUs.View;
 
 public partial class Home : ContentPage
 {
-	public Home()
+	public Home(HomeViewModel homeViewModel)
 	{
 		InitializeComponent();
-	}
+		BindingContext = homeViewModel;
+
+    }
 }
 

@@ -10,30 +10,27 @@
     <StackLayout>
         <RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshRecipes}">
 
-            <CollectionView ItemsSource="{Binding Recipes}" SelectionMode="Single" SelectedItem="{Binding SelectedRecipe}" SelectionChangedCommand="{Binding ViewRecipeDetailsCommand}">
+            <CollectionView ItemsSource="{Binding Recipes}" EmptyView="Nothing to cook!">
                 <CollectionView.ItemTemplate >
                     <DataTemplate x:DataType="model:Recipe">
                         <Frame BorderColor="Gray"
                             CornerRadius="6"
-                            Margin="9">
-                            <!--<Frame.GestureRecognizers>
+                               Padding="0"
+                               Margin="10">
+                            <!--Better for Android than selected items and commands-->
+                            <Frame.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="RecipeDetailsAsync_Tapped"/>
-                            </Frame.GestureRecognizers>-->
+                            </Frame.GestureRecognizers>
                             <StackLayout>
-                                <Image HeightRequest="100" Source="{Binding Image}" />
-                                <Label Margin="9" >
-                                    <Label.Text>
-                                        <MultiBinding StringFormat="{}{0} &#x09; ⏱️ {1}">
-                                            <Binding Path="Name" />
-                                            <Binding Path="Time" />
-                                        </MultiBinding>
-                                    </Label.Text>
-                                </Label>
+                                <Image Aspect="AspectFill" HeightRequest="200" HorizontalOptions="FillAndExpand" Source="{Binding Image}" />
+                                <HorizontalStackLayout>
+                                    <Label Margin="9" Text="{Binding Name}" FontSize="Title" VerticalTextAlignment="End"/>
+                                    <Label Margin="9" Text="{Binding Time}" VerticalTextAlignment="Center"/>
+                                </HorizontalStackLayout>
+                                
                                 <!--To display a little separator-->
-                                <BoxView Color="Gray"
-                                     HeightRequest="2"
-                                     HorizontalOptions="Fill" />
-                                <Label Margin="5" Text="{Binding Description}" />
+                                <BoxView Color="Gray" HeightRequest="2" HorizontalOptions="Fill" />
+                                <Label Margin="9" Text="{Binding Description}"/>
                             </StackLayout>
                         </Frame>
                     </DataTemplate>

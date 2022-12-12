@@ -13,7 +13,10 @@ namespace CookUs.Model
         public string Image { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public string Time { get; set; }
+        string _time;
+        public string Time { get => "⏱️ " + _time;
+            set => _time = value;
+        }
         public List<Ingredient> Ingredients { get; set; }
         public List<string> Steps { get; set; }
 
