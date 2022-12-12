@@ -2,11 +2,40 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CookUs.View.AddRecipe"
-             Title="AddRecipe">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             x:DataType="viewmodel:AddRecipeViewModel"
+             xmlns:viewmodel="clr-namespace:CookUs.ViewModel"
+             Title="{Binding Title}">
+    <StackLayout>
+        <Label Text="Name:" />
+        <Entry Text="{Binding InputName}" Placeholder="Bearnaise sauce Burger" MaxLength="50"/>
+
+        <Label Text="Description:" />
+        <Editor Text="{Binding InputDescription}" />
+
+        <HorizontalStackLayout>
+            <Label Text="Servings:" />
+            <Stepper Value="{Binding InputTime}" Minimum="1" Maximum="12"/>
+
+            <Label Text="Time:" />
+            <Entry Text="{Binding InputServings}" />
+        </HorizontalStackLayout>
+        
+
+        <!--<Label Text="Ingredients:" />
+        <HorizontalStackLayout>
+            <Label Text="Quantity:" />
+            <Entry Text="{Binding InputQuantity1}" />
+
+            <Label Text="Food:" />
+            <Entry Text="{Binding InputIngredient1}" />
+        </HorizontalStackLayout>
+
+
+        <Label Text="Provide the instructions for preparing your recipe:" />
+        <Entry Text="{Binding InputStep1}" />
+        <Entry Text="{Binding InputStep2}" />
+        <Entry Text="{Binding InputStep3}" />-->
+
+        <Button Text="Add" Command="{Binding AddRecipeCommand}" />
+    </StackLayout>
 </ContentPage>

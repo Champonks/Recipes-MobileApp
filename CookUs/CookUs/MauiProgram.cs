@@ -18,10 +18,15 @@ public static class MauiProgram
 			});
 		builder.Services.AddTransient<ViewRecipeViewModel>();
 		builder.Services.AddTransient<ViewRecipePage>();
+        
 		builder.Services.AddTransient<RecipesListViewModel>();
 		builder.Services.AddTransient<RecipesListPage>();
+        
         builder.Services.AddTransient<HomeViewModel>();
         builder.Services.AddTransient<Home>();
+        
+        builder.Services.AddTransient<AddRecipeViewModel>();
+        builder.Services.AddTransient<AddRecipe>();
 #if DEBUG
 		builder.Logging.AddDebug();
 #endif

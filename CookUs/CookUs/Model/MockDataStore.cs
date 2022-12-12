@@ -14,25 +14,25 @@ namespace CookUs.Model
         {
             Recipes = new List<Recipe>();
             //add some mock data
-            List<Ingredient> ingredients = new();
-            ingredients.Add(new Ingredient() { Name = "Tomato", Quantity = "200g" });
-            ingredients.Add(new Ingredient() { Name = "Pasta", Quantity = "500g" });
-            ingredients.Add(new Ingredient() { Name = "Cheese", Quantity = "200g" });
-            ingredients.Add(new Ingredient() { Name = "Cream", Quantity = "200ml" });
-            ingredients.Add(new Ingredient() { Name = "Butter", Quantity = "100g" });
-            ingredients.Add(new Ingredient() { Name = "Salad", Quantity = "1" });
-            ingredients.Add(new Ingredient() { Name = "Carrots", Quantity = "5" });
+            Ingredient[] ingredients = new Ingredient[7];
+            ingredients[0] = new Ingredient() { Name = "Tomato", Quantity = "200g" };
+            ingredients[0] = new Ingredient() { Name = "Pasta", Quantity = "500g" };
+            ingredients[0] = new Ingredient() { Name = "Cheese", Quantity = "200g" };
+            ingredients[0] = new Ingredient() { Name = "Cream", Quantity = "200ml" };
+            ingredients[0] = new Ingredient() { Name = "Butter", Quantity = "100g" };
+            ingredients[0] = new Ingredient() { Name = "Salad", Quantity = "1" };
+            ingredients[0] = new Ingredient() { Name = "Carrots", Quantity = "5" };
 
-            List<string> steps = new()
+            string[] steps =
             {
                 "Put Bread in the oven",
                 "Put beef between the bread",
                 "Add any toppings"
             };
 
-            Recipe r1 = new("Burger", "Miam miam", "25min", ingredients, steps);
-            Recipe r2 = new("Pasta", "Italia", "30min", ingredients, steps);
-            Recipe r3 = new("Pizza", "MAMAMIA", "45min", ingredients, steps);
+            Recipe r1 = new("Burger", "Miam miam", 4, "25min", ingredients, steps);
+            Recipe r2 = new("Pasta", "Italia", 2, "30min", ingredients, steps);
+            Recipe r3 = new("Pizza", "MAMAMIA", 6, "45min", ingredients, steps);
 
             Recipes.Add(r1);
             Recipes.Add(r2);
