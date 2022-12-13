@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,19 +10,23 @@ namespace CookUs.Model
     public class MockDataStore : IDataStore
     {
         public List<Recipe> Recipes { get; set; }
+        public List<Ingredient> Cart { get ; set; }
 
         public MockDataStore()
         {
             Recipes = new List<Recipe>();
+            Cart = new List<Ingredient>();
             //add some mock data
-            List<Ingredient> ingredients = new();
-            ingredients.Add(new Ingredient() { Name = "Tomato", Quantity = "200g" });
-            ingredients.Add(new Ingredient() { Name = "Pasta", Quantity = "500g" });
-            ingredients.Add(new Ingredient() { Name = "Cheese", Quantity = "200g" });
-            ingredients.Add(new Ingredient() { Name = "Cream", Quantity = "200ml" });
-            ingredients.Add(new Ingredient() { Name = "Butter", Quantity = "100g" });
-            ingredients.Add(new Ingredient() { Name = "Salad", Quantity = "1" });
-            ingredients.Add(new Ingredient() { Name = "Carrots", Quantity = "5" });
+            List<Ingredient> ingredients = new()
+            {
+                new Ingredient() { Name = "Tomato", Quantity = "200g" },
+                new Ingredient() { Name = "Pasta", Quantity = "500g" },
+                new Ingredient() { Name = "Cheese", Quantity = "200g" },
+                new Ingredient() { Name = "Cream", Quantity = "200ml" },
+                new Ingredient() { Name = "Butter", Quantity = "100g" },
+                new Ingredient() { Name = "Salad", Quantity = "1" },
+                new Ingredient() { Name = "Carrots", Quantity = "5" }
+            };
 
             List<string> steps = new()
             {
@@ -30,24 +35,32 @@ namespace CookUs.Model
                 "Add any toppings"
             };
 
-            Recipe r1 = new("Burger", "Miam miam", "25min", ingredients, steps);
-            Recipe r2 = new("Pasta", "Italia", "30min", ingredients, steps);
-            Recipe r3 = new("Pizza", "MAMAMIA", "45min", ingredients, steps);
+            Recipe r1 = new("Burger", "Miam miam", 4, "25min", ingredients, steps);
+            Recipe r2 = new("Pasta", "Italia", 2, "30min", ingredients, steps);
+            Recipe r3 = new("Pizza", "MAMAMIA", 6, "45min", ingredients, steps);
 
             Recipes.Add(r1);
             Recipes.Add(r2);
             Recipes.Add(r3);
+            Recipes.Add(r3);
+            Recipes.Add(r3);
+            Recipes.Add(r3);
+            Recipes.Add(r3);
+            Recipes.Add(r3);
+            Recipes.Add(r3);
+            Recipes.Add(r3);
+            Recipes.Add(r3);
+            Recipes.Add(r3);
+            Recipes.Add(r3);
+            Recipes.Add(r3);
+            Recipes.Add(r3);
+
+            Cart.Add(new Ingredient { Name = "Test", Quantity = "200g" });
         }
 
         Task<bool> IDataStore.AddRecipeAsync(Recipe recipe)
         {
             Recipes.Add(recipe);
-            return Task.FromResult(true);
-        }
-
-        Task<bool> IDataStore.UpdateRecipeAsync(Recipe recipe, int index)
-        {
-            Recipes[index] = recipe;
             return Task.FromResult(true);
         }
 
@@ -57,14 +70,34 @@ namespace CookUs.Model
             return Task.FromResult(true);
         }
 
-        Task<Recipe> IDataStore.GetRecipeAsync(int id)
+        Task<List<Recipe>> IDataStore.GetRecipesAsync(int start, int count)
         {
-            return Task.FromResult(Recipes[id]);
+            int nbRecipes = Recipes.Count;
+            if (start < nbRecipes)
+            {
+                if (count > (nbRecipes - start)) count = (nbRecipes - start);
+                return Task.FromResult(Recipes.GetRange(start, count));
+            } else
+            {
+                return null;
+            }
         }
 
-        Task<List<Recipe>> IDataStore.GetRecipesAsync()
+        public Task<List<Ingredient>> GetCartAsync()
         {
-            return Task.FromResult(Recipes);
+            return Task.FromResult(Cart);
+        }
+
+        public Task<bool> AddToCartAsync(Ingredient ingredient)
+        {
+            Cart.Add(ingredient);
+            return Task.FromResult(true);
+        }
+
+        public Task<bool> DeleteFromCartAsync(Ingredient ingredient)
+        {
+            Cart.Remove(ingredient);
+            return Task.FromResult(true);
         }
     }
 }

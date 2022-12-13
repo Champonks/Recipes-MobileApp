@@ -2,11 +2,102 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="CookUs.View.AddRecipe"
-             Title="AddRecipe">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             x:DataType="viewmodel:AddRecipeViewModel"
+             xmlns:viewmodel="clr-namespace:CookUs.ViewModel"
+             xmlns:model="clr-namespace:CookUs.Model"
+             Title="{Binding Title}">
+    <ScrollView Padding="10">
+        <StackLayout>
+            <Label Text="Name:" FontSize="Title"/>
+            <Entry Text="{Binding InputName}" Placeholder="Bearnaise sauce Burger" MaxLength="50"/>
+
+            <Label Text="Description:" FontSize="Subtitle"/>
+            <Editor Text="{Binding InputDescription}" />
+
+            <HorizontalStackLayout>
+                <HorizontalStackLayout Padding="10, 0">
+                    <Label Text="Servings:" VerticalOptions="Center" FontSize="Small"/>
+                    <Label x:Name="_displayStepperLabel" Text="{Binding Source={x:Reference _stepper}, Path=Value}" VerticalOptions="Center" Padding="10, 0" FontSize="Small"/>
+                    <Stepper x:Name="_stepper" Value="{Binding InputServings}" Minimum="1" Maximum="12" VerticalOptions="Center"/>
+                    
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout Padding="10, 0">
+                    <Label Text="Time:" VerticalOptions="Center" Padding="5, 0" FontSize="Small"/>
+                    <Entry Text="{Binding InputTime}" />
+                </HorizontalStackLayout>
+            </HorizontalStackLayout>
+
+            <!--Ingredients choice-->
+            <Label Text="Ingredients:" FontSize="Subtitle"/>
+            <Frame BorderColor="Gray"
+                               CornerRadius="6"
+                               Padding="0"
+                               Margin="0, 10">
+                <CollectionView ItemsSource="{Binding InputIngredients}" 
+                                SelectedItem="{Binding IngredientSelected}" 
+                                SelectionMode="Single"
+                                EmptyView="This recipe is made out of thin air"
+                                MinimumHeightRequest="125"
+                                MaximumHeightRequest="250"
+                                MaximumWidthRequest="1000">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Ingredient">
+
+                                <Grid Padding="10" ColumnDefinitions="*,*">
+                                    <Label Grid.Column="0" Text="{Binding Quantity}" HorizontalOptions="Center"/>
+                                    <Label Grid.Column="1" Text="{Binding Name}" HorizontalOptions="Center"/>
+                                </Grid>
+
+                            </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Frame>
+            <HorizontalStackLayout VerticalOptions="Center">
+                <HorizontalStackLayout>
+                    <Label Text="Quantity:" VerticalOptions="Center" />
+                    <Entry Text="{Binding InputQuantity}" MinimumWidthRequest="100" Margin="10, 0"/>
+                </HorizontalStackLayout>
+
+                <HorizontalStackLayout>
+                    <Label Text="Food:" VerticalOptions="Center"/>
+                    <Entry Text="{Binding InputFood}" MinimumWidthRequest="100" Margin="10, 0"/>
+                </HorizontalStackLayout>
+                <Button Text="Add ingredient" Command="{Binding AddIngredientCommand}" MaximumWidthRequest="150"/>
+            </HorizontalStackLayout>
+            <Button Text="Remove selected ingredient" Command="{Binding RemoveIngredientCommand}" />
+
+            <!--Steps choice-->
+            <Label Text="Steps to follow:" FontSize="Subtitle" Margin="0, 10"/>
+            <Frame BorderColor="Gray"
+                   CornerRadius="6"
+                   Padding="0"
+                   Margin="0, 10">
+                <CollectionView ItemsSource="{Binding InputSteps}" 
+                            SelectedItem="{Binding StepSelected}" 
+                            SelectionMode="Single"
+                            EmptyView="This recipe is made magically"
+                            MinimumHeightRequest="125"
+                            MaximumHeightRequest="250"
+                            MaximumWidthRequest="500">
+
+                </CollectionView>
+            </Frame>
+            <Grid Margin="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Text="Step:" VerticalOptions="Start" Margin="0, 0, 15, 0" FontSize="Small"/>
+                <Editor Grid.Column="1" Text="{Binding InputStep}" MinimumWidthRequest="100" MinimumHeightRequest="100"/>
+                <Button Grid.Column="2" Text="Add step" Command="{Binding AddStepCommand}" MaximumWidthRequest="150" MaximumHeightRequest="50" />
+            </Grid>
+            
+            <Button Text="Remove selected ingredient" Command="{Binding RemoveStepCommand}" />
+
+            <Button Text="Add" Command="{Binding AddRecipeCommand}" Margin="25"/>
+        </StackLayout>
+    </ScrollView>
+   
 </ContentPage>

@@ -1,12 +1,33 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:CookUs.ViewModel"
+             xmlns:model="clr-namespace:CookUs.Model"
+             x:DataType="viewmodel:CartViewModel"
              x:Class="CookUs.View.Cart"
-             Title="Cart">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Title="{Binding Title}">
+    <RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshCart}">
+        <CollectionView ItemsSource="{Binding Cart}" SelectionMode="None" EmptyView="No ingredients in your cart">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <SwipeView x:Name="swipeView">
+                        <SwipeView.LeftItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Delete"
+                                   IconImageSource="trash.png"
+                                   BackgroundColor="LightPink"
+                                   Command="{Binding RemoveFromCartCommand}"
+                                   CommandParameter="{Binding}" />
+                            </SwipeItems>
+                        </SwipeView.LeftItems>
+                        <Grid RowDefinitions="auto, auto" x:DataType="model:Ingredient">
+                            <Label Grid.Row="0" Text="{Binding Name}" FontAttributes="Bold"/>
+                            <Label Grid.Row="1" Text="{Binding Quantity}"/>
+                        </Grid>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
+    
 </ContentPage>

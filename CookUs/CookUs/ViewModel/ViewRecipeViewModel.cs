@@ -19,6 +19,21 @@ namespace CookUs.ViewModel
                 OnPropertyChanged();
             }
         }
+        
+        public Command AddToCartCommand { get; }
+
+        public ViewRecipeViewModel()
+        {
+            AddToCartCommand = new Command(OnAddToCart);
+        }
+
+        private void OnAddToCart(object obj)
+        {
+            if (obj == null) return;
+            Ingredient i = obj as Ingredient;
+            DataStore.AddToCartAsync(i);
+        }
+
         public void ApplyQueryAttributes(IDictionary<string, object> query)
         {
             Recipe = query["Recipe"] as Recipe;
