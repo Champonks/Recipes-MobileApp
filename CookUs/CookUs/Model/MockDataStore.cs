@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,16 +15,18 @@ namespace CookUs.Model
         {
             Recipes = new List<Recipe>();
             //add some mock data
-            Ingredient[] ingredients = new Ingredient[7];
-            ingredients[0] = new Ingredient() { Name = "Tomato", Quantity = "200g" };
-            ingredients[0] = new Ingredient() { Name = "Pasta", Quantity = "500g" };
-            ingredients[0] = new Ingredient() { Name = "Cheese", Quantity = "200g" };
-            ingredients[0] = new Ingredient() { Name = "Cream", Quantity = "200ml" };
-            ingredients[0] = new Ingredient() { Name = "Butter", Quantity = "100g" };
-            ingredients[0] = new Ingredient() { Name = "Salad", Quantity = "1" };
-            ingredients[0] = new Ingredient() { Name = "Carrots", Quantity = "5" };
+            List<Ingredient> ingredients = new()
+            {
+                new Ingredient() { Name = "Tomato", Quantity = "200g" },
+                new Ingredient() { Name = "Pasta", Quantity = "500g" },
+                new Ingredient() { Name = "Cheese", Quantity = "200g" },
+                new Ingredient() { Name = "Cream", Quantity = "200ml" },
+                new Ingredient() { Name = "Butter", Quantity = "100g" },
+                new Ingredient() { Name = "Salad", Quantity = "1" },
+                new Ingredient() { Name = "Carrots", Quantity = "5" }
+            };
 
-            string[] steps =
+            List<string> steps = new()
             {
                 "Put Bread in the oven",
                 "Put beef between the bread",
@@ -36,6 +39,18 @@ namespace CookUs.Model
 
             Recipes.Add(r1);
             Recipes.Add(r2);
+            Recipes.Add(r3);
+            Recipes.Add(r3);
+            Recipes.Add(r3);
+            Recipes.Add(r3);
+            Recipes.Add(r3);
+            Recipes.Add(r3);
+            Recipes.Add(r3);
+            Recipes.Add(r3);
+            Recipes.Add(r3);
+            Recipes.Add(r3);
+            Recipes.Add(r3);
+            Recipes.Add(r3);
             Recipes.Add(r3);
         }
 
@@ -62,9 +77,17 @@ namespace CookUs.Model
             return Task.FromResult(Recipes[id]);
         }
 
-        Task<List<Recipe>> IDataStore.GetRecipesAsync()
+        Task<List<Recipe>> IDataStore.GetRecipesAsync(int start, int count)
         {
-            return Task.FromResult(Recipes);
+            int nbRecipes = Recipes.Count;
+            if (start < nbRecipes)
+            {
+                if (count > (nbRecipes - start)) count = (nbRecipes - start);
+                return Task.FromResult(Recipes.GetRange(start, count));
+            } else
+            {
+                return null;
+            }
         }
     }
 }

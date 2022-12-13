@@ -13,7 +13,7 @@ public partial class RecipesListPage : ContentPage
 
         if (DeviceInfo.Idiom == DeviceIdiom.Desktop)
         {
-            this.ToolbarItems.Add(new ToolbarItem(null,"refresh.png", ViewModel.LoadDataAsync));
+            this.ToolbarItems.Add(new ToolbarItem("Refresh", "refresh.png", ViewModel.LoadRecipesAsync));
         }
     }
 

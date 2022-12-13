@@ -11,16 +11,19 @@ namespace CookUs.ViewModel
 {
     public class RecipesListViewModel : BaseViewModel
     {
+        static int RECIPES_LOADED = 0;
         public ObservableCollection<Recipe> Recipes { get; } = new();
         public Command AddRecipeCommand { get; }
         public Command RefreshRecipes { get; }
+        public Command LoadMoreRecipes { get; }
 
         public RecipesListViewModel()
         {
             Title = "Recipes";
-            LoadDataAsync();
+            LoadRecipesAsync();
             AddRecipeCommand = new Command(OnAddRecipe);
-            RefreshRecipes = new Command(LoadDataAsync);
+            RefreshRecipes = new Command(LoadRecipesAsync);
+            LoadMoreRecipes = new Command(LoadMoreRecipesAsync);
         }
 
         public async Task OnViewRecipeDetails(Recipe recipe)
@@ -39,7 +42,34 @@ namespace CookUs.ViewModel
             await Shell.Current.GoToAsync(nameof(AddRecipe), true);
         }
 
-        public async void LoadDataAsync()
+        public async void LoadRecipesAsync()
+        {
+            if (IsRefreshing) return;
+
+            try
+            {
+                IsRefreshing = true;
+                int nbRecipesToLoad = 7;
+                var recipes = await DataStore.GetRecipesAsync(0, nbRecipesToLoad);
+                
+                Recipes.Clear();
+                foreach (var recipe in recipes)
+                {
+                    Recipes.Add(recipe);
+                }
+                RECIPES_LOADED = Recipes.Count;
+            }
+            catch (Exception ex)
+            {
+                await App.Current.MainPage.DisplayAlert("Loading error", ex.Message, "Cancel");
+            }
+            finally
+            {
+                IsRefreshing = false;
+            }
+        }
+
+        public async void LoadMoreRecipesAsync()
         {
             if (IsRefreshing) return;
 
@@ -47,16 +77,17 @@ namespace CookUs.ViewModel
             {
                 IsRefreshing = true;
 
-                var recipes = await DataStore.GetRecipesAsync();
-                Recipes.Clear();
+                var recipes = await DataStore.GetRecipesAsync(RECIPES_LOADED, 10);
                 foreach (var recipe in recipes)
                 {
                     Recipes.Add(recipe);
                 }
+                RECIPES_LOADED = Recipes.Count;
+
             }
             catch (Exception ex)
             {
-                await App.Current.MainPage.DisplayAlert("Error", ex.Message, "OK");
+                await App.Current.MainPage.DisplayAlert("Loading error", ex.Message, "Cancel");
             }
             finally
             {

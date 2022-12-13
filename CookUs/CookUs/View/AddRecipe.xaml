@@ -4,38 +4,94 @@
              x:Class="CookUs.View.AddRecipe"
              x:DataType="viewmodel:AddRecipeViewModel"
              xmlns:viewmodel="clr-namespace:CookUs.ViewModel"
+             xmlns:model="clr-namespace:CookUs.Model"
              Title="{Binding Title}">
-    <StackLayout>
-        <Label Text="Name:" />
-        <Entry Text="{Binding InputName}" Placeholder="Bearnaise sauce Burger" MaxLength="50"/>
+    <ScrollView Padding="10">
+        <StackLayout>
+            <Label Text="Name:" />
+            <Entry Text="{Binding InputName}" Placeholder="Bearnaise sauce Burger" MaxLength="50"/>
 
-        <Label Text="Description:" />
-        <Editor Text="{Binding InputDescription}" />
+            <Label Text="Description:" />
+            <Editor Text="{Binding InputDescription}" />
 
-        <HorizontalStackLayout>
-            <Label Text="Servings:" />
-            <Stepper Value="{Binding InputTime}" Minimum="1" Maximum="12"/>
+            <HorizontalStackLayout>
+                <HorizontalStackLayout Padding="10, 0">
+                    <Label Text="Servings:" VerticalOptions="Center"/>
+                    <Label x:Name="_displayStepperLabel" Text="{Binding Source={x:Reference _stepper}, Path=Value}" VerticalOptions="Center" Padding="10, 0"/>
+                    <Stepper x:Name="_stepper" Value="{Binding InputServings}" Minimum="1" Maximum="12" VerticalOptions="Center"/>
+                    
+                </HorizontalStackLayout>
 
-            <Label Text="Time:" />
-            <Entry Text="{Binding InputServings}" />
-        </HorizontalStackLayout>
-        
+                <HorizontalStackLayout Padding="10, 0">
+                    <Label Text="Time:" VerticalOptions="Center" Padding="5, 0"/>
+                    <Entry Text="{Binding InputTime}" />
+                </HorizontalStackLayout>
+            </HorizontalStackLayout>
 
-        <!--<Label Text="Ingredients:" />
-        <HorizontalStackLayout>
-            <Label Text="Quantity:" />
-            <Entry Text="{Binding InputQuantity1}" />
+            <!--Ingredients choice-->
+            <Label Text="Ingredients:" />
+            <Frame BorderColor="Gray"
+                               CornerRadius="6"
+                               Padding="0"
+                               Margin="0, 10">
+                <CollectionView ItemsSource="{Binding InputIngredients}" 
+                                SelectedItem="{Binding IngredientSelected}" 
+                                SelectionMode="Single"
+                                EmptyView="This recipe is made out of thin air"
+                                MinimumHeightRequest="125"
+                                MaximumHeightRequest="250"
+                                MaximumWidthRequest="1000">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Ingredient">
 
-            <Label Text="Food:" />
-            <Entry Text="{Binding InputIngredient1}" />
-        </HorizontalStackLayout>
+                                <Grid Padding="10" ColumnDefinitions="*,*">
+                                    <Label Grid.Column="0" Text="{Binding Quantity}" HorizontalOptions="Center"/>
+                                    <Label Grid.Column="1" Text="{Binding Name}" HorizontalOptions="Center"/>
+                                </Grid>
 
+                            </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Frame>
+            <HorizontalStackLayout VerticalOptions="Center">
+                <HorizontalStackLayout>
+                    <Label Text="Quantity:" VerticalOptions="Center" />
+                    <Entry Text="{Binding InputQuantity}" MinimumWidthRequest="100" Margin="10, 0"/>
+                </HorizontalStackLayout>
 
-        <Label Text="Provide the instructions for preparing your recipe:" />
-        <Entry Text="{Binding InputStep1}" />
-        <Entry Text="{Binding InputStep2}" />
-        <Entry Text="{Binding InputStep3}" />-->
+                <HorizontalStackLayout>
+                    <Label Text="Food:" VerticalOptions="Center"/>
+                    <Entry Text="{Binding InputFood}" MinimumWidthRequest="100" Margin="10, 0"/>
+                </HorizontalStackLayout>
+                <Button Text="Add ingredient" Command="{Binding AddIngredientCommand}" MaximumWidthRequest="150"/>
+            </HorizontalStackLayout>
+            <Button Text="Remove selected ingredient" Command="{Binding RemoveIngredientCommand}" />
 
-        <Button Text="Add" Command="{Binding AddRecipeCommand}" />
-    </StackLayout>
+            <!--Steps choice-->
+            <Label Text="Steps to follow:" />
+            <Frame BorderColor="Gray"
+                   CornerRadius="6"
+                   Padding="0"
+                   Margin="0, 10">
+                <CollectionView ItemsSource="{Binding InputSteps}" 
+                            SelectedItem="{Binding StepSelected}" 
+                            SelectionMode="Single"
+                            EmptyView="This recipe is made magically"
+                            MinimumHeightRequest="125"
+                            MaximumHeightRequest="250"
+                            MaximumWidthRequest="500">
+
+                </CollectionView>
+            </Frame>
+            <HorizontalStackLayout>
+                <Entry Text="{Binding InputStep}" />
+                <Button Text="Add step" Command="{Binding AddStepCommand}" MaximumWidthRequest="150" />
+            </HorizontalStackLayout>
+            
+            <Button Text="Remove selected ingredient" Command="{Binding RemoveStepCommand}" />
+
+            <Button Text="Add" Command="{Binding AddRecipeCommand}" />
+        </StackLayout>
+    </ScrollView>
+   
 </ContentPage>

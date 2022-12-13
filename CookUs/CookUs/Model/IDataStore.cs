@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ namespace CookUs.Model
     {
         //create all functions useful to manage a list of recipes async
         List<Recipe> Recipes { get; set; }
-        Task<List<Recipe>> GetRecipesAsync();
+        Task<List<Recipe>> GetRecipesAsync(int start, int count);
         Task<Recipe> GetRecipeAsync(int id);
         Task<bool> AddRecipeAsync(Recipe recipe);
         Task<bool> DeleteRecipeAsync(Recipe recipe);

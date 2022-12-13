@@ -7,10 +7,25 @@
              x:Class="CookUs.View.RecipesListPage"
              Title="{Binding Title}">
 
-    <StackLayout>
+    <AbsoluteLayout>
+        <Button AbsoluteLayout.LayoutBounds="1, 1, 70, 70"
+            AbsoluteLayout.LayoutFlags="PositionProportional"
+            Text="+"
+            Command="{Binding AddRecipeCommand}"
+            FontSize="Large"
+            BackgroundColor="DodgerBlue"
+            TextColor="White"
+            CornerRadius="25"
+            HeightRequest="50"
+            WidthRequest="50" 
+            ZIndex="100"/>
+       
         <RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshRecipes}">
 
-            <CollectionView ItemsSource="{Binding Recipes}" EmptyView="Nothing to cook!">
+            <CollectionView ItemsSource="{Binding Recipes}" 
+                            EmptyView="Nothing to cook!"
+                            RemainingItemsThreshold="5"
+                            RemainingItemsThresholdReachedCommand="{Binding LoadMoreRecipes}">
                 <CollectionView.ItemTemplate >
                     <DataTemplate x:DataType="model:Recipe">
                         <Frame BorderColor="Gray"
@@ -27,7 +42,7 @@
                                     <Label Margin="9" Text="{Binding Name}" FontSize="Title" VerticalTextAlignment="End"/>
                                     <Label Margin="9" Text="{Binding Time}" VerticalTextAlignment="Center"/>
                                 </HorizontalStackLayout>
-                                
+
                                 <!--To display a little separator-->
                                 <BoxView Color="Gray" HeightRequest="2" HorizontalOptions="Fill" />
                                 <Label Margin="9" Text="{Binding Description}"/>
@@ -37,20 +52,5 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </RefreshView>
-        
-        <AbsoluteLayout>
-            <Button
-            AbsoluteLayout.LayoutBounds="1, 1, 50, 50"
-            AbsoluteLayout.LayoutFlags="PositionProportional"
-            Text="+"
-            Command="{Binding AddRecipeCommand}"
-            FontSize="Large"
-            BackgroundColor="DodgerBlue"
-            TextColor="White"
-            CornerRadius="25"
-            HeightRequest="50"
-            WidthRequest="50" />
-        </AbsoluteLayout>
-        
-    </StackLayout>
+    </AbsoluteLayout>
 </ContentPage>

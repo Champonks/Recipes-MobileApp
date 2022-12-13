@@ -13,15 +13,15 @@ namespace CookUs.Model
         public string Image { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public int Servings { get; set; }
+        public double Servings { get; set; }
         string _time;
         public string Time { get => "⏱️ " + _time;
             set => _time = value;
         }
-        public Ingredient[] Ingredients { get; set; }
-        public string[] Steps { get; set; }
+        public List<Ingredient> Ingredients { get; set; }
+        public List<string> Steps { get; set; }
 
-        public Recipe(string image, string name, string description, int servings, string time, Ingredient[] ingredients, string[] steps)
+        public Recipe(string image, string name, string description, double servings, string time, List<Ingredient> ingredients, List<string> steps)
         {
             Id = CURRENT_ID++;
             Image = image;
@@ -33,7 +33,7 @@ namespace CookUs.Model
             Steps = steps;
         }
 
-        public Recipe(string name, string description, int servings, string time, Ingredient[] ingredients, string[] steps)
+        public Recipe(string name, string description, double servings, string time, List<Ingredient> ingredients, List<string> steps)
         {
             Id = CURRENT_ID++;
             Image = "default_recipe_img.jpg";
