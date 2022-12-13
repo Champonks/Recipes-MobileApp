@@ -44,12 +44,11 @@ namespace CookUs.ViewModel
 
         public async void LoadRecipesAsync()
         {
-            if (IsRefreshing) return;
 
             try
             {
                 IsRefreshing = true;
-                int nbRecipesToLoad = 8;
+                int nbRecipesToLoad = 7;
                 var recipes = await DataStore.GetRecipesAsync(0, nbRecipesToLoad);
                 
                 Recipes.Clear();
@@ -71,14 +70,13 @@ namespace CookUs.ViewModel
 
         async void LoadMoreRecipesAsync()
         {
-            await App.Current.MainPage.DisplayAlert("Load more", "Loading more recipes", "Cancel");
             if (IsRefreshing) return;
 
             try
             {
                 IsRefreshing = true;
 
-                var recipes = await DataStore.GetRecipesAsync(RECIPES_LOADED, 10);
+                var recipes = await DataStore.GetRecipesAsync(RECIPES_LOADED, 5);
                 foreach (var recipe in recipes)
                 {
                     Recipes.Add(recipe);

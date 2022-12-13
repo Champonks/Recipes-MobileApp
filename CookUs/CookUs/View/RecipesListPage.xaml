@@ -8,12 +8,12 @@
              Title="{Binding Title}">
 
 
-    <FlexLayout>
+    <StackLayout>
         <RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshRecipes}">
 
             <CollectionView ItemsSource="{Binding Recipes}" 
                             EmptyView="Nothing to cook!"
-                            RemainingItemsThreshold="0"
+                            RemainingItemsThreshold="1"
                             RemainingItemsThresholdReachedCommand="{Binding LoadMoreRecipes}">
                 <CollectionView.ItemTemplate >
                     <DataTemplate x:DataType="model:Recipe">
@@ -41,7 +41,7 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </RefreshView>
-        <AbsoluteLayout MaximumWidthRequest="0" >
+        <AbsoluteLayout MaximumHeightRequest="0" >
             <Button AbsoluteLayout.LayoutBounds="1, 1, 100, 100"
                     AbsoluteLayout.LayoutFlags="PositionProportional"
                     Text="+"
@@ -54,6 +54,6 @@
                     WidthRequest="50" 
                     ZIndex="100"/>
         </AbsoluteLayout>
-    </FlexLayout>
+    </StackLayout>
     
 </ContentPage>
