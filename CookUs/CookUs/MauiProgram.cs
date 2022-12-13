@@ -26,7 +26,11 @@ public static class MauiProgram
         builder.Services.AddTransient<Home>();
         
         builder.Services.AddTransient<AddRecipeViewModel>();
-        builder.Services.AddTransient<AddRecipe>();
+		builder.Services.AddTransient<AddRecipe>();
+
+        builder.Services.AddTransient<CartViewModel>();
+        builder.Services.AddTransient<Cart>();
+
 #if DEBUG
 		builder.Logging.AddDebug();
 #endif

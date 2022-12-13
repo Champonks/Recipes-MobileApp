@@ -2,14 +2,41 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodel="clr-namespace:CookUs.ViewModel"
+             xmlns:model="clr-namespace:CookUs.Model"
              x:Class="CookUs.View.ViewRecipePage"
              x:DataType="viewmodel:ViewRecipeViewModel"
              Title="{Binding Recipe.Name}">
     <ScrollView>
         <VerticalStackLayout>
             <Image HeightRequest="300" Source="{Binding Recipe.Image}" />
-            <Label Text="{Binding Recipe.Time}" FontSize="Medium" />
-            <Label Text="{Binding Recipe.Description}" FontSize="Medium" />
+            <HorizontalStackLayout>
+                <Label Text="{Binding Recipe.Time}" Margin="0, 0, 20, 0" />
+                <Label Text="🧍" />
+                <Label Text="{Binding Recipe.Servings}" />
+            </HorizontalStackLayout>
+            
+            <Label Text="{Binding Recipe.Description}" />
+
+            <ListView ItemsSource="{Binding Recipe.Ingredients}" SelectionMode="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="Add to Cart" IconImageSource="add_to_cart.png"
+                                          Command="{Binding AddToCartCommand}"
+                                          CommandParameter="{Binding}" />
+                            </ViewCell.ContextActions>
+                            <Grid RowDefinitions="auto, auto" x:DataType="model:Ingredient">
+                                <Label Grid.Column="0" Text="{Binding Name}" FontAttributes="Bold"/>
+                                <Label Grid.Column="1" Text="{Binding Quantity}"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ListView ItemsSource="{Binding Recipe.Steps}" SelectionMode="None">
+                
+            </ListView>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

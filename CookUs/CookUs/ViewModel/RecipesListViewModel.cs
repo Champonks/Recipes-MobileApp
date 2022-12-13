@@ -49,6 +49,10 @@ namespace CookUs.ViewModel
             {
                 IsRefreshing = true;
                 int nbRecipesToLoad = 7;
+                if (DeviceInfo.Idiom == DeviceIdiom.Desktop)
+                {
+                    nbRecipesToLoad = 200;
+                }
                 var recipes = await DataStore.GetRecipesAsync(0, nbRecipesToLoad);
                 
                 Recipes.Clear();
@@ -75,7 +79,8 @@ namespace CookUs.ViewModel
             try
             {
                 IsRefreshing = true;
-
+                //because on pc, loading incrementally doesn't work
+               
                 var recipes = await DataStore.GetRecipesAsync(RECIPES_LOADED, 5);
                 foreach (var recipe in recipes)
                 {

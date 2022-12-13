@@ -8,8 +8,8 @@
              Title="{Binding Title}">
 
 
-    <StackLayout>
-        <RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshRecipes}">
+    <FlexLayout>
+        <RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshRecipes}" >
 
             <CollectionView ItemsSource="{Binding Recipes}" 
                             EmptyView="Nothing to cook!"
@@ -41,7 +41,7 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </RefreshView>
-        <AbsoluteLayout MaximumHeightRequest="0" >
+        <AbsoluteLayout MaximumWidthRequest="0" >
             <Button AbsoluteLayout.LayoutBounds="1, 1, 100, 100"
                     AbsoluteLayout.LayoutFlags="PositionProportional"
                     Text="+"
@@ -54,6 +54,6 @@
                     WidthRequest="50" 
                     ZIndex="100"/>
         </AbsoluteLayout>
-    </StackLayout>
+    </FlexLayout>
     
 </ContentPage>

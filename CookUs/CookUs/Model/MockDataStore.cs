@@ -10,10 +10,12 @@ namespace CookUs.Model
     public class MockDataStore : IDataStore
     {
         public List<Recipe> Recipes { get; set; }
+        public List<Ingredient> Cart { get ; set; }
 
         public MockDataStore()
         {
             Recipes = new List<Recipe>();
+            Cart = new List<Ingredient>();
             //add some mock data
             List<Ingredient> ingredients = new()
             {
@@ -52,6 +54,8 @@ namespace CookUs.Model
             Recipes.Add(r3);
             Recipes.Add(r3);
             Recipes.Add(r3);
+
+            Cart.Add(new Ingredient { Name = "Test", Quantity = "200g" });
         }
 
         Task<bool> IDataStore.AddRecipeAsync(Recipe recipe)
@@ -60,21 +64,10 @@ namespace CookUs.Model
             return Task.FromResult(true);
         }
 
-        Task<bool> IDataStore.UpdateRecipeAsync(Recipe recipe, int index)
-        {
-            Recipes[index] = recipe;
-            return Task.FromResult(true);
-        }
-
         Task<bool> IDataStore.DeleteRecipeAsync(Recipe recipe)
         {
             Recipes.Remove(recipe);
             return Task.FromResult(true);
-        }
-
-        Task<Recipe> IDataStore.GetRecipeAsync(int id)
-        {
-            return Task.FromResult(Recipes[id]);
         }
 
         Task<List<Recipe>> IDataStore.GetRecipesAsync(int start, int count)
@@ -88,6 +81,23 @@ namespace CookUs.Model
             {
                 return null;
             }
+        }
+
+        public Task<List<Ingredient>> GetCartAsync()
+        {
+            return Task.FromResult(Cart);
+        }
+
+        public Task<bool> AddToCartAsync(Ingredient ingredient)
+        {
+            Cart.Add(ingredient);
+            return Task.FromResult(true);
+        }
+
+        public Task<bool> DeleteFromCartAsync(Ingredient ingredient)
+        {
+            Cart.Remove(ingredient);
+            return Task.FromResult(true);
         }
     }
 }
