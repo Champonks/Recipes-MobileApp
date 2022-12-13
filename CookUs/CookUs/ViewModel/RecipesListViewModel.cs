@@ -12,7 +12,7 @@ namespace CookUs.ViewModel
     public class RecipesListViewModel : BaseViewModel
     {
         static int RECIPES_LOADED = 0;
-        public ObservableCollection<Recipe> Recipes { get; } = new();
+        public ObservableCollection<Recipe> Recipes { get; set; } = new();
         public Command AddRecipeCommand { get; }
         public Command RefreshRecipes { get; }
         public Command LoadMoreRecipes { get; }
@@ -49,7 +49,7 @@ namespace CookUs.ViewModel
             try
             {
                 IsRefreshing = true;
-                int nbRecipesToLoad = 7;
+                int nbRecipesToLoad = 8;
                 var recipes = await DataStore.GetRecipesAsync(0, nbRecipesToLoad);
                 
                 Recipes.Clear();
@@ -69,8 +69,9 @@ namespace CookUs.ViewModel
             }
         }
 
-        public async void LoadMoreRecipesAsync()
+        async void LoadMoreRecipesAsync()
         {
+            await App.Current.MainPage.DisplayAlert("Load more", "Loading more recipes", "Cancel");
             if (IsRefreshing) return;
 
             try

@@ -7,24 +7,13 @@
              x:Class="CookUs.View.RecipesListPage"
              Title="{Binding Title}">
 
-    <AbsoluteLayout>
-        <Button AbsoluteLayout.LayoutBounds="1, 1, 70, 70"
-            AbsoluteLayout.LayoutFlags="PositionProportional"
-            Text="+"
-            Command="{Binding AddRecipeCommand}"
-            FontSize="Large"
-            BackgroundColor="DodgerBlue"
-            TextColor="White"
-            CornerRadius="25"
-            HeightRequest="50"
-            WidthRequest="50" 
-            ZIndex="100"/>
-       
+
+    <FlexLayout>
         <RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshRecipes}">
 
             <CollectionView ItemsSource="{Binding Recipes}" 
                             EmptyView="Nothing to cook!"
-                            RemainingItemsThreshold="5"
+                            RemainingItemsThreshold="0"
                             RemainingItemsThresholdReachedCommand="{Binding LoadMoreRecipes}">
                 <CollectionView.ItemTemplate >
                     <DataTemplate x:DataType="model:Recipe">
@@ -52,5 +41,19 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </RefreshView>
-    </AbsoluteLayout>
+        <AbsoluteLayout MaximumWidthRequest="0" >
+            <Button AbsoluteLayout.LayoutBounds="1, 1, 100, 100"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    Text="+"
+                    Command="{Binding AddRecipeCommand}"
+                    FontSize="Large"
+                    BackgroundColor="DodgerBlue"
+                    TextColor="White"
+                    CornerRadius="25"
+                    HeightRequest="50"
+                    WidthRequest="50" 
+                    ZIndex="100"/>
+        </AbsoluteLayout>
+    </FlexLayout>
+    
 </ContentPage>
