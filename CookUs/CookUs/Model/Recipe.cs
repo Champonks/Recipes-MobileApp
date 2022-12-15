@@ -6,6 +6,14 @@ using System.Threading.Tasks;
 
 namespace CookUs.Model
 {
+    public enum CookingSeason
+    {
+        Winter,
+        Spring,
+        Summer,
+        Autumn,
+        All
+    }
     public class Recipe
     {
         static int CURRENT_ID = 0;
@@ -14,6 +22,7 @@ namespace CookUs.Model
         public string Name { get; set; }
         public string Description { get; set; }
         public double Servings { get; set; }
+        public CookingSeason RecipeSeason { get; set; }
         string _time;
         public string Time { get => "⏱️ " + _time;
             set => _time = value;
@@ -21,25 +30,27 @@ namespace CookUs.Model
         public List<Ingredient> Ingredients { get; set; }
         public List<string> Steps { get; set; }
 
-        public Recipe(string image, string name, string description, double servings, string time, List<Ingredient> ingredients, List<string> steps)
+        public Recipe(string image, string name, string description, double servings, CookingSeason recipeSeason, string time, List<Ingredient> ingredients, List<string> steps)
         {
             Id = CURRENT_ID++;
             Image = image;
             Name = name;
             Description = description;
             Servings = servings;
+            RecipeSeason = recipeSeason;
             Time = time;
             Ingredients = ingredients;
             Steps = steps;
         }
 
-        public Recipe(string name, string description, double servings, string time, List<Ingredient> ingredients, List<string> steps)
+        public Recipe(string name, string description, double servings, CookingSeason recipeSeason, string time, List<Ingredient> ingredients, List<string> steps)
         {
             Id = CURRENT_ID++;
             Image = "default_recipe_img.jpg";
             Name = name;
             Description = description;
             Servings = servings;
+            RecipeSeason = recipeSeason;
             Time = time;
             Ingredients = ingredients;
             Steps = steps;

@@ -13,6 +13,7 @@ namespace CookUs.Model
         List<Recipe> Recipes { get; set; }
         List<Ingredient> Cart { get; set; }
         Task<List<Recipe>> GetRecipesAsync(int start, int count);
+        Task<List<Recipe>> GetSeasonalRecipesAsync(int count);
         Task<bool> AddRecipeAsync(Recipe recipe);
         Task<bool> DeleteRecipeAsync(Recipe recipe);
         Task<List<Ingredient>> GetCartAsync();

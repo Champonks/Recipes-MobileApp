@@ -26,17 +26,6 @@ namespace CookUs.ViewModel
             LoadMoreRecipes = new Command(LoadMoreRecipesAsync);
         }
 
-        public async Task OnViewRecipeDetails(Recipe recipe)
-        {
-            if (recipe == null) return;
-            
-            await Shell.Current.GoToAsync(nameof(ViewRecipePage), true, new Dictionary<string, object>
-            {
-                {"Recipe", recipe }
-            });
-
-        }
-
         private async void OnAddRecipe()
         {
             await Shell.Current.GoToAsync(nameof(AddRecipe), true);

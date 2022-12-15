@@ -35,9 +35,9 @@ namespace CookUs.Model
                 "Add any toppings"
             };
 
-            Recipe r1 = new("Burger", "Miam miam", 4, "25min", ingredients, steps);
-            Recipe r2 = new("Pasta", "Italia", 2, "30min", ingredients, steps);
-            Recipe r3 = new("Pizza", "MAMAMIA", 6, "45min", ingredients, steps);
+            Recipe r1 = new("Burger", "Miam miam", 4, CookingSeason.All, "25min", ingredients, steps);
+            Recipe r2 = new("Pasta", "Italia", 2, CookingSeason.All, "30min", ingredients, steps);
+            Recipe r3 = new("Pizza", "MAMAMIA", 6, CookingSeason.All, "45min", ingredients, steps);
 
             Recipes.Add(r1);
             Recipes.Add(r2);
@@ -81,6 +81,31 @@ namespace CookUs.Model
             {
                 return null;
             }
+        }
+
+        public Task<List<Recipe>> GetSeasonalRecipesAsync(int count)
+        {
+            CookingSeason season;
+            DateTime now = DateTime.Now;
+            if (now.Month >= 3 && now.Month <= 5)
+            {
+                season = CookingSeason.Spring;
+            }
+            else if (now.Month >= 6 && now.Month <= 8)
+            {
+                season = CookingSeason.Summer;
+            }
+            else if (now.Month >= 9 && now.Month <= 11)
+            {
+                season = CookingSeason.Autumn;
+            }
+            else 
+            {
+                season = CookingSeason.Winter;
+            }
+            //get 'count' recipes from the current season or all season
+            List<Recipe> seasonalRecipes = Recipes.Where(r => (r.RecipeSeason == season) || (r.RecipeSeason == CookingSeason.All)).Take(count).ToList();
+            return Task.FromResult(seasonalRecipes);
         }
 
         public Task<List<Ingredient>> GetCartAsync()

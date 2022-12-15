@@ -75,7 +75,7 @@ namespace CookUs.ViewModel
         {
             if (InputName.Length != 0 && InputDescription.Length != 0 && InputTime.Length != 0 && InputIngredients.Count != 0 && InputSteps.Count != 0)
             {
-                Recipe recipe = new(InputName, InputDescription, InputServings, InputTime, InputIngredients.ToList(), InputSteps.ToList());
+                Recipe recipe = new(InputName, InputDescription, InputServings, CookingSeason.All, InputTime, InputIngredients.ToList(), InputSteps.ToList());
                 await DataStore.AddRecipeAsync(recipe);
                 await Shell.Current.GoToAsync("..");
             } else
