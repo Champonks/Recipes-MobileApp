@@ -7,7 +7,7 @@
              x:Class="CookUs.View.Cart"
              Title="{Binding Title}">
 
-    <RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshCart}">
+    <RefreshView >
         <StackLayout>
             <CollectionView ItemsSource="{Binding Cart}" 
                             SelectionMode="Multiple" 
@@ -38,23 +38,24 @@
             </CollectionView>
             <HorizontalStackLayout HorizontalOptions="Center">
                 <Button IsVisible="True" 
-                    x:Name="RemoveWindowsButton" 
-                    Command="{Binding RevomeSelectedIngredientsCommand}" 
-                    Text="Delete selected"
-                    ImageSource="delete.png"
-                    HeightRequest="60"
-                    WidthRequest="210"
-                    HorizontalOptions="Center"
-                    Margin="20"/>
+                        x:Name="RemoveWindowsButton" 
+                        Command="{Binding RevomeSelectedIngredientsCommand}" 
+                        Text="Delete selected"
+                        ImageSource="delete.png"
+                        HeightRequest="60"
+                        WidthRequest="210"
+                        HorizontalOptions="Center"
+                        Margin="20"/>
 
                 <Button IsVisible="True" 
-                    Command="{Binding RevomeAllIngredientsCommand}" 
-                    Text="Clean cart"
-                    ImageSource="trash.png"
-                    HeightRequest="60"
-                    WidthRequest="210"
-                    HorizontalOptions="Center"
-                    Margin="20"/>
+                        x:Name="CleanCartButton" 
+                        Command="{Binding RevomeAllIngredientsCommand}" 
+                        Text="Clean cart"
+                        ImageSource="trash.png"
+                        HeightRequest="60"
+                        WidthRequest="210"
+                        HorizontalOptions="Center"
+                        Margin="20"/>
             </HorizontalStackLayout>
             
         </StackLayout>

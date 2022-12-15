@@ -8,11 +8,11 @@ namespace CookUs.Model
 {
     public enum CookingSeason
     {
-        Winter,
+        Winter = 1,
         Spring,
         Summer,
         Autumn,
-        All
+        All = 0
     }
     public class Recipe
     {

@@ -15,9 +15,9 @@
                 <Label Text="{Binding Recipe.Servings}" Margin="0, 15" FontSize="Medium" HorizontalOptions="End"/>
             </HorizontalStackLayout>
             
-            <Label Text="{Binding Recipe.Description}" FontSize="Medium"/>
+            <Label Text="{Binding Recipe.Description}" FontSize="Medium" Margin="20"/>
 
-            <ListView ItemsSource="{Binding Recipe.Ingredients}" HorizontalOptions="Center" SelectionMode="None" WidthRequest="500">
+            <ListView ItemsSource="{Binding Recipe.Ingredients}" Margin="20, 20, 20, 0" HorizontalOptions="Center" SelectionMode="None" MaximumWidthRequest="500">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -26,15 +26,22 @@
                                           Command="{Binding AddToCartCommand}"
                                           CommandParameter="{Binding}" />
                             </ViewCell.ContextActions>
-                            <HorizontalStackLayout x:DataType="model:Ingredient" HorizontalOptions="Center">
-                                <Label Text="{Binding Name}" FontAttributes="Bold" HorizontalOptions="Start"/>
-                                <Label Text="{Binding Quantity}" HorizontalOptions="End"/>
-                            </HorizontalStackLayout>
+                            <StackLayout x:DataType="model:Ingredient">
+                                <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="Small" HorizontalTextAlignment="Center"/>
+                                <Label Text="{Binding Quantity}" FontSize="Micro" HorizontalTextAlignment="Center"/>
+                            </StackLayout>
                            
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            <Button Text="Add all to Cart" 
+                    ImageSource="add_to_cart.png" 
+                    Command="{Binding AddAllToCartCommand}" 
+                    Margin="20, 15, 20, 30" 
+                    HorizontalOptions="Center" 
+                    MaximumWidthRequest="350"/>
+
             <ListView ItemsSource="{Binding Recipe.Steps}" HorizontalOptions="Center" SelectionMode="None">
                 
             </ListView>

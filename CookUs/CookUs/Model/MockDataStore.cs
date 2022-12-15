@@ -55,7 +55,10 @@ namespace CookUs.Model
             Recipes.Add(r3);
             Recipes.Add(r3);
 
-            Cart.Add(new Ingredient { Name = "Test", Quantity = "200g" });
+            Cart.Add(new Ingredient { Name = "Chicken", Quantity = "200g" });
+            Cart.Add(new Ingredient { Name = "Tomato", Quantity = "4" });
+            Cart.Add(new Ingredient { Name = "Potatoes", Quantity = "10" });
+            Cart.Add(new Ingredient { Name = "Cheese", Quantity = "200g" });
         }
 
         Task<bool> IDataStore.AddRecipeAsync(Recipe recipe)
@@ -119,9 +122,16 @@ namespace CookUs.Model
             return Task.FromResult(true);
         }
 
+        public Task<bool> AddAllToCartAsync(List<Ingredient> ingredient)
+        {
+            Cart.AddRange(ingredient);
+            return Task.FromResult(true);
+        }
+
         public Task<bool> DeleteFromCartAsync(Ingredient ingredient)
         {
             Cart.Remove(ingredient);
+            Console.WriteLine(Cart.Count ); 
             return Task.FromResult(true);
         }
 

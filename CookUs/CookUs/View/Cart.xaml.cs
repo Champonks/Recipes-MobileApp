@@ -16,8 +16,8 @@ public partial class Cart : ContentPage
         }
         if (DeviceInfo.Idiom == DeviceIdiom.Phone)
         {
-            RemoveWindowsButton.IsVisible = false;
-            collectionView.SelectionMode = SelectionMode.None;
+            //RemoveWindowsButton.IsVisible = false;
+            //collectionView.SelectionMode = SelectionMode.None;
         }
     }
 

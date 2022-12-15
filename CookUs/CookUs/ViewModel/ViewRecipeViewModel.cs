@@ -21,17 +21,33 @@ namespace CookUs.ViewModel
         }
         
         public Command AddToCartCommand { get; }
+        public Command AddAllToCartCommand { get; }
 
         public ViewRecipeViewModel()
         {
-            AddToCartCommand = new Command(OnAddToCart);
+            AddToCartCommand = new Command(OnAddToCartAsync);
+            AddAllToCartCommand = new Command(OnAddAllToCartAsync);
         }
 
-        private void OnAddToCart(object obj)
+        private async void OnAddToCartAsync(object obj)
         {
             if (obj == null) return;
             Ingredient i = obj as Ingredient;
-            DataStore.AddToCartAsync(i);
+            if(!(await DataStore.AddToCartAsync(i))) {
+                await Application.Current.MainPage.DisplayAlert("Error", "Failed to add to cart", "OK");
+            }
+        }
+
+        private async void OnAddAllToCartAsync()
+        {
+            if (!(await DataStore.AddAllToCartAsync(Recipe.Ingredients)))
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "Failed to add to cart", "OK");
+            } else
+            {
+                await Application.Current.MainPage.DisplayAlert("Success", "Added to cart", "OK");
+            }
+            
         }
 
         public void ApplyQueryAttributes(IDictionary<string, object> query)
