@@ -99,5 +99,21 @@ namespace CookUs.Model
             Cart.Remove(ingredient);
             return Task.FromResult(true);
         }
+
+        public Task<bool> DeleteMultipleFromCartAsync(List<Ingredient> ingredients)
+        {
+            if (ingredients == Cart)
+            {
+                Cart.Clear();
+            }
+            else
+            { 
+                foreach (Ingredient ingredient in ingredients)
+                {
+                    Cart.Remove(ingredient);
+                }
+            }
+            return Task.FromResult(true);
+        }
     }
 }

@@ -14,5 +14,23 @@ public partial class Cart : ContentPage
         {
             this.ToolbarItems.Add(new ToolbarItem("Refresh", "refresh.png", ViewModel.LoadCartAsync));
         }
+        if (DeviceInfo.Idiom == DeviceIdiom.Phone)
+        {
+            RemoveWindowsButton.IsVisible = false;
+            collectionView.SelectionMode = SelectionMode.None;
+        }
+    }
+
+    //display the button only if there is selected items
+    public void On_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (collectionView.SelectedItems.Count == 0)
+        {
+            RemoveWindowsButton.IsVisible = false;
+        }
+        else
+        {
+            RemoveWindowsButton.IsVisible = true;
+        }
     }
 }

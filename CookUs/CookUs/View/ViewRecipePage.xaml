@@ -17,7 +17,7 @@
             
             <Label Text="{Binding Recipe.Description}" />
 
-            <ListView ItemsSource="{Binding Recipe.Ingredients}" SelectionMode="None">
+            <ListView ItemsSource="{Binding Recipe.Ingredients}" HorizontalOptions="Center" SelectionMode="None">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -26,15 +26,16 @@
                                           Command="{Binding AddToCartCommand}"
                                           CommandParameter="{Binding}" />
                             </ViewCell.ContextActions>
-                            <Grid RowDefinitions="auto, auto" x:DataType="model:Ingredient">
-                                <Label Grid.Column="0" Text="{Binding Name}" FontAttributes="Bold"/>
-                                <Label Grid.Column="1" Text="{Binding Quantity}"/>
-                            </Grid>
+                            <HorizontalStackLayout x:DataType="model:Ingredient">
+                                <Label Text="{Binding Name}" FontAttributes="Bold"/>
+                                <Label Text="{Binding Quantity}"/>
+                            </HorizontalStackLayout>
+                           
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <ListView ItemsSource="{Binding Recipe.Steps}" SelectionMode="None">
+            <ListView ItemsSource="{Binding Recipe.Steps}" HorizontalOptions="Center" SelectionMode="None">
                 
             </ListView>
         </VerticalStackLayout>
