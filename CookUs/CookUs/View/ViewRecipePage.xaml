@@ -9,15 +9,15 @@
     <ScrollView>
         <VerticalStackLayout>
             <Image HeightRequest="300" Source="{Binding Recipe.Image}" />
-            <HorizontalStackLayout>
-                <Label Text="{Binding Recipe.Time}" Margin="0, 0, 20, 0" />
-                <Label Text="🧍" />
-                <Label Text="{Binding Recipe.Servings}" />
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <Label Text="{Binding Recipe.Time}" Margin="0, 15, 70, 15" FontSize="Medium" HorizontalOptions="Start"/>
+                <Label Text="🧍" FontSize="Medium" Margin="0, 15"/>
+                <Label Text="{Binding Recipe.Servings}" Margin="0, 15" FontSize="Medium" HorizontalOptions="End"/>
             </HorizontalStackLayout>
             
-            <Label Text="{Binding Recipe.Description}" />
+            <Label Text="{Binding Recipe.Description}" FontSize="Medium"/>
 
-            <ListView ItemsSource="{Binding Recipe.Ingredients}" HorizontalOptions="Center" SelectionMode="None">
+            <ListView ItemsSource="{Binding Recipe.Ingredients}" HorizontalOptions="Center" SelectionMode="None" WidthRequest="500">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -26,9 +26,9 @@
                                           Command="{Binding AddToCartCommand}"
                                           CommandParameter="{Binding}" />
                             </ViewCell.ContextActions>
-                            <HorizontalStackLayout x:DataType="model:Ingredient">
-                                <Label Text="{Binding Name}" FontAttributes="Bold"/>
-                                <Label Text="{Binding Quantity}"/>
+                            <HorizontalStackLayout x:DataType="model:Ingredient" HorizontalOptions="Center">
+                                <Label Text="{Binding Name}" FontAttributes="Bold" HorizontalOptions="Start"/>
+                                <Label Text="{Binding Quantity}" HorizontalOptions="End"/>
                             </HorizontalStackLayout>
                            
                         </ViewCell>
