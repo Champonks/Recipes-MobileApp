@@ -1,4 +1,5 @@
 ﻿using CookUs.Model;
+using CookUs.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -26,6 +27,17 @@ namespace CookUs.ViewModel
                 _isRefreshing = value; 
                 OnPropertyChanged(); 
             } 
+        }
+
+        public async Task OnViewRecipeDetails(Recipe recipe)
+        {
+            if (recipe == null) return;
+
+            await Shell.Current.GoToAsync(nameof(ViewRecipePage), true, new Dictionary<string, object>
+            {
+                {"Recipe", recipe }
+            });
+
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

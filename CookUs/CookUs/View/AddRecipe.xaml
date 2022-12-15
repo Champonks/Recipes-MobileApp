@@ -12,7 +12,7 @@
             <Entry Text="{Binding InputName}" Placeholder="Bearnaise sauce Burger" MaxLength="50"/>
 
             <Label Text="Description:" FontSize="Subtitle"/>
-            <Editor Text="{Binding InputDescription}" />
+            <Editor Text="{Binding InputDescription}" Placeholder="Delicious burger to eat with the company of friends. Goes very well with french fries."/>
 
             <HorizontalStackLayout>
                 <HorizontalStackLayout Padding="10, 0">
@@ -24,7 +24,79 @@
 
                 <HorizontalStackLayout Padding="10, 0">
                     <Label Text="Time:" VerticalOptions="Center" Padding="5, 0" FontSize="Small"/>
-                    <Entry Text="{Binding InputTime}" />
+                    <Entry Text="{Binding InputTime}" Placeholder="45min"/>
+                </HorizontalStackLayout>
+            </HorizontalStackLayout>
+
+            <!--season choice-->
+            <HorizontalStackLayout>
+                <Label Text="Typically, what season is this dish?" FontSize="Small"/>
+                <HorizontalStackLayout RadioButtonGroup.GroupName="season">
+                    
+                    <RadioButton Value="Winter">
+                        <RadioButton.Content>
+                            <StackLayout>
+                                <Image Source="winter.png"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center" />
+                                <Label Text="Winter"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="End" />
+                            </StackLayout>
+                        </RadioButton.Content>
+                    </RadioButton>
+                    
+                    <RadioButton Value="Spring">
+                        <RadioButton.Content>
+                            <StackLayout>
+                                <Image Source="spring.png"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center" />
+                                <Label Text="Spring"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="End" />
+                            </StackLayout>
+                        </RadioButton.Content>
+                    </RadioButton>
+                    
+                    <RadioButton Value="Summer">
+                        <RadioButton.Content>
+                            <StackLayout>
+                                <Image Source="summer.png"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center" />
+                                <Label Text="Summer"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="End" />
+                            </StackLayout>
+                        </RadioButton.Content>
+                    </RadioButton>
+                    
+                    <RadioButton Value="Autumn">
+                        <RadioButton.Content>
+                            <StackLayout>
+                                <Image Source="autumn.png"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center" />
+                                <Label Text="Autumn"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="End" />
+                            </StackLayout>
+                        </RadioButton.Content>
+                    </RadioButton>
+
+                    <RadioButton Value="All">
+                        <RadioButton.Content>
+                            <StackLayout>
+                                <Image Source="all_seasons.png"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center" />
+                                <Label Text="Winter"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="End" />
+                            </StackLayout>
+                        </RadioButton.Content>
+                    </RadioButton>
                 </HorizontalStackLayout>
             </HorizontalStackLayout>
 
@@ -56,12 +128,12 @@
             <HorizontalStackLayout VerticalOptions="Center">
                 <HorizontalStackLayout>
                     <Label Text="Quantity:" VerticalOptions="Center" />
-                    <Entry Text="{Binding InputQuantity}" MinimumWidthRequest="100" Margin="10, 0"/>
+                    <Entry Text="{Binding InputQuantity}" MinimumWidthRequest="100" Margin="10, 0" Placeholder="400g"/>
                 </HorizontalStackLayout>
 
                 <HorizontalStackLayout>
                     <Label Text="Food:" VerticalOptions="Center"/>
-                    <Entry Text="{Binding InputFood}" MinimumWidthRequest="100" Margin="10, 0"/>
+                    <Entry Text="{Binding InputFood}" MinimumWidthRequest="100" Margin="10, 0" Placeholder="Minced steak"/>
                 </HorizontalStackLayout>
                 <Button Text="Add ingredient" Command="{Binding AddIngredientCommand}" MaximumWidthRequest="150"/>
             </HorizontalStackLayout>
@@ -90,7 +162,7 @@
                     <ColumnDefinition Width="auto" />
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="0" Text="Step:" VerticalOptions="Start" Margin="0, 0, 15, 0" FontSize="Small"/>
-                <Editor Grid.Column="1" Text="{Binding InputStep}" MinimumWidthRequest="100" MinimumHeightRequest="100"/>
+                <Editor Grid.Column="1" Text="{Binding InputStep}" MinimumWidthRequest="100" MinimumHeightRequest="100" Placeholder="Chop the onion and sauté it"/>
                 <Button Grid.Column="2" Text="Add step" Command="{Binding AddStepCommand}" MaximumWidthRequest="150" MaximumHeightRequest="50" />
             </Grid>
             

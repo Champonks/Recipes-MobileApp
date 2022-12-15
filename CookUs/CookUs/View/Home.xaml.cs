@@ -1,14 +1,22 @@
-﻿using CookUs.ViewModel;
+﻿using CookUs.Model;
+using CookUs.ViewModel;
 
 namespace CookUs.View;
 
 public partial class Home : ContentPage
 {
-	public Home(HomeViewModel homeViewModel)
+    readonly HomeViewModel ViewModel;
+    public Home(HomeViewModel homeViewModel)
 	{
 		InitializeComponent();
-		BindingContext = homeViewModel;
+		BindingContext = ViewModel = homeViewModel;
+        Title = "Home";
+    }
 
+    private async void OnImageButtonClickedAsync(object sender, EventArgs e)
+    {
+        Recipe recipe = ((VisualElement)sender).BindingContext as Recipe;
+        await ViewModel.OnViewRecipeDetails(recipe);
     }
 }
 
