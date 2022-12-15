@@ -10,10 +10,11 @@ namespace CookUs.Search
 {
     class SearchRecipe : SearchHandler
     {
-        public IList<Recipe> Recipes { get; set; }
+        public IList<Recipe> Recipes { get; set; } = new List<Recipe>();
         public Type SelectedItemNavigationTarget { get; set; }
 
-        protected override void OnQueryChanged(string oldValue, string newValue)
+        //we search each times the user types a character to have the latest recipes, good when the app is little only
+        protected override async void OnQueryChanged(string oldValue, string newValue)
         {
             base.OnQueryChanged(oldValue, newValue);
 
@@ -23,6 +24,7 @@ namespace CookUs.Search
             }
             else
             {
+                Recipes = await DependencyService.Get<IDataStore>().GetRecipesAsync(0, Int32.MaxValue);
                 ItemsSource = Recipes
                     .Where(animal => animal.Name.ToLower().Contains(newValue.ToLower()))
                     .ToList();
@@ -35,7 +37,10 @@ namespace CookUs.Search
 
             ShellNavigationState state = (App.Current.MainPage as Shell).CurrentState;
 
-            await Shell.Current.GoToAsync(nameof(AddRecipe), true);
+            await Shell.Current.GoToAsync(nameof(ViewRecipePage), true, new Dictionary<string, object>
+            {
+                {"Recipe", item as Recipe }
+            });
         }
     }
 }

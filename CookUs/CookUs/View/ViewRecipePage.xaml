@@ -14,8 +14,10 @@
                 <Label Text="🧍" FontSize="Medium" Margin="0, 15"/>
                 <Label Text="{Binding Recipe.Servings}" Margin="0, 15" FontSize="Medium" HorizontalOptions="End"/>
             </HorizontalStackLayout>
-            
-            <Label Text="{Binding Recipe.Description}" FontSize="Medium" Margin="20"/>
+
+            <StackLayout MaximumWidthRequest="450" Margin="20" HorizontalOptions="Center">
+                <Label Text="{Binding Recipe.Description}" FontSize="Medium"/>
+            </StackLayout>
 
             <ListView ItemsSource="{Binding Recipe.Ingredients}" Margin="20, 20, 20, 0" HorizontalOptions="Center" SelectionMode="None" MaximumWidthRequest="500">
                 <ListView.ItemTemplate>
@@ -43,7 +45,13 @@
                     MaximumWidthRequest="350"/>
 
             <ListView ItemsSource="{Binding Recipe.Steps}" HorizontalOptions="Center" SelectionMode="None">
-                
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="x:String">
+                        <ViewCell>
+                            <Label Text="{Binding}" FontSize="Small" Margin="20" HorizontalTextAlignment="Center"/>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
             </ListView>
         </VerticalStackLayout>
     </ScrollView>

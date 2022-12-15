@@ -17,7 +17,7 @@
                             x:Name="collectionView"
                             HorizontalOptions="Center">
                 <CollectionView.ItemTemplate>
-                    <DataTemplate>
+                    <DataTemplate x:Name="WindowsDataTemplate">
                         <SwipeView>
                             <SwipeView.RightItems>
                                 <SwipeItems >

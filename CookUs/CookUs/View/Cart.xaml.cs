@@ -13,11 +13,10 @@ public partial class Cart : ContentPage
         if (DeviceInfo.Idiom == DeviceIdiom.Desktop)
         {
             this.ToolbarItems.Add(new ToolbarItem("Refresh", "refresh.png", ViewModel.LoadCartAsync));
-        }
-        if (DeviceInfo.Idiom == DeviceIdiom.Phone)
+        } else
         {
-            //RemoveWindowsButton.IsVisible = false;
-            //collectionView.SelectionMode = SelectionMode.None;
+            RemoveWindowsButton.IsVisible = false;
+            collectionView.SelectionMode = SelectionMode.None;
         }
     }
 
