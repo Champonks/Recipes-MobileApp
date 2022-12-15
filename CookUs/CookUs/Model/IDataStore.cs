@@ -18,5 +18,6 @@ namespace CookUs.Model
         Task<List<Ingredient>> GetCartAsync();
         Task<bool> AddToCartAsync(Ingredient ingredient);
         Task<bool> DeleteFromCartAsync(Ingredient ingredient);
+        Task<bool> DeleteMultipleFromCartAsync(List<Ingredient> ingredients);
     }
 }

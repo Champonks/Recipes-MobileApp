@@ -11,14 +11,21 @@ namespace CookUs.ViewModel
     public class CartViewModel : BaseViewModel
     {
         public ObservableCollection<Ingredient> Cart { get; set; } = new();
+        public ObservableCollection<object> SelectedItemsInCart { get; set; } = new();
         public Command RefreshCart { get; }
         public Command RemoveFromCartCommand { get; }
+        public Command RevomeSelectedIngredientsCommand { get; }
+        public Command RevomeAllIngredientsCommand { get; }
+
         public CartViewModel()
         {
             Title = "Cart";
             LoadCartAsync();
             RefreshCart = new Command(LoadCartAsync);
             RemoveFromCartCommand = new Command(OnRemoveFromCart);
+            RevomeSelectedIngredientsCommand = new Command(OnRemoveSelectedIngredients);
+            RevomeAllIngredientsCommand = new Command(OnRemoveAllIngredients);
+
         }
 
         private void OnRemoveFromCart(object obj)
@@ -28,6 +35,27 @@ namespace CookUs.ViewModel
             DataStore.DeleteFromCartAsync(i);
         }
         
+        private void OnRemoveSelectedIngredients()
+        {
+            if (SelectedItemsInCart == null)
+            {
+                return;
+            } else if (SelectedItemsInCart.Count == 1)
+            {
+                DataStore.DeleteFromCartAsync(SelectedItemsInCart[0] as Ingredient);
+            } else
+            {
+                DataStore.DeleteMultipleFromCartAsync(SelectedItemsInCart.Cast<Ingredient>().ToList());
+            }
+            LoadCartAsync();
+        }
+
+        private void OnRemoveAllIngredients()
+        {
+            DataStore.DeleteMultipleFromCartAsync(Cart.ToList());
+            LoadCartAsync();
+        }
+
         public async void LoadCartAsync()
         {
             try
