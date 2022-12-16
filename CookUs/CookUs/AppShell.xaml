@@ -5,7 +5,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:CookUs"
     xmlns:view="clr-namespace:CookUs.View">
-    
+
     <TabBar FlyoutDisplayOptions="AsMultipleItems">
 
         <Tab Title="Home" Icon="home.png">
@@ -17,7 +17,7 @@
         </Tab>
 
         <Tab Title="Cart" Icon="cart.png">
-            <ShellContent ContentTemplate="{DataTemplate view:Cart}" />
+            <ShellContent ContentTemplate="{DataTemplate view:Cart}" x:Name="cartTab" />
         </Tab>
         
     </TabBar>

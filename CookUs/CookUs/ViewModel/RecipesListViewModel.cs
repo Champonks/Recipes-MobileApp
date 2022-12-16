@@ -33,7 +33,7 @@ namespace CookUs.ViewModel
 
         public async void LoadRecipesAsync()
         {
-
+            if (IsRefreshing) return;
             try
             {
                 IsRefreshing = true;

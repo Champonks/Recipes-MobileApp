@@ -3,18 +3,38 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodel="clr-namespace:CookUs.ViewModel"
              xmlns:model="clr-namespace:CookUs.Model"
+             xmlns:search="clr-namespace:CookUs.Search"
              x:DataType="viewmodel:RecipesListViewModel"
              x:Class="CookUs.View.RecipesListPage"
              Title="{Binding Title}">
-
+    <Shell.SearchHandler>
+        <search:SearchRecipe Placeholder="Hawaiian pizza" ShowsResults="true" >
+            <search:SearchRecipe.ItemTemplate>
+                <DataTemplate x:DataType="model:Recipe">
+                    <Grid Padding="10"
+                          ColumnDefinitions="0.15*,0.85*">
+                        <Image Source="{Binding Image}"
+                               HeightRequest="40"
+                               WidthRequest="40" 
+                               Margin="0, 0, 15, 0"/>
+                        <Label Grid.Column="1"
+                               Text="{Binding Name}"
+                               FontAttributes="Bold"
+                               VerticalOptions="Center" />
+                    </Grid>
+                </DataTemplate>
+            </search:SearchRecipe.ItemTemplate>
+        </search:SearchRecipe>
+    </Shell.SearchHandler>
 
     <FlexLayout>
-        <RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshRecipes}" >
+        <RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshRecipes}">
 
             <CollectionView ItemsSource="{Binding Recipes}" 
                             EmptyView="Nothing to cook!"
                             RemainingItemsThreshold="1"
-                            RemainingItemsThresholdReachedCommand="{Binding LoadMoreRecipes}">
+                            RemainingItemsThresholdReachedCommand="{Binding LoadMoreRecipes}"
+                            x:Name="collectionRecipes">
                 <CollectionView.ItemTemplate >
                     <DataTemplate x:DataType="model:Recipe">
                         <Frame BorderColor="Gray"

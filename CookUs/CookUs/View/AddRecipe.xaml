@@ -29,11 +29,11 @@
             </HorizontalStackLayout>
 
             <!--season choice-->
-            <HorizontalStackLayout>
-                <Label Text="Typically, what season is this dish?" FontSize="Small"/>
-                <HorizontalStackLayout RadioButtonGroup.GroupName="season">
+            <StackLayout>
+                <Label Text="Typically, what season is this dish?" FontSize="Small" Margin="5"/>
+                <HorizontalStackLayout RadioButtonGroup.GroupName="season" RadioButtonGroup.SelectedValue="{Binding SeasonSelected}">
                     
-                    <RadioButton Value="Winter">
+                    <RadioButton Value="1">
                         <RadioButton.Content>
                             <StackLayout>
                                 <Image Source="winter.png"
@@ -46,7 +46,7 @@
                         </RadioButton.Content>
                     </RadioButton>
                     
-                    <RadioButton Value="Spring">
+                    <RadioButton Value="2">
                         <RadioButton.Content>
                             <StackLayout>
                                 <Image Source="spring.png"
@@ -59,7 +59,7 @@
                         </RadioButton.Content>
                     </RadioButton>
                     
-                    <RadioButton Value="Summer">
+                    <RadioButton Value="3">
                         <RadioButton.Content>
                             <StackLayout>
                                 <Image Source="summer.png"
@@ -72,7 +72,7 @@
                         </RadioButton.Content>
                     </RadioButton>
                     
-                    <RadioButton Value="Autumn">
+                    <RadioButton Value="4">
                         <RadioButton.Content>
                             <StackLayout>
                                 <Image Source="autumn.png"
@@ -85,20 +85,20 @@
                         </RadioButton.Content>
                     </RadioButton>
 
-                    <RadioButton Value="All">
+                    <RadioButton Value="0">
                         <RadioButton.Content>
                             <StackLayout>
                                 <Image Source="all_seasons.png"
                                        HorizontalOptions="Center"
                                        VerticalOptions="Center" />
-                                <Label Text="Winter"
+                                <Label Text="All"
                                        HorizontalOptions="Center"
                                        VerticalOptions="End" />
                             </StackLayout>
                         </RadioButton.Content>
                     </RadioButton>
                 </HorizontalStackLayout>
-            </HorizontalStackLayout>
+            </StackLayout>
 
             <!--Ingredients choice-->
             <Label Text="Ingredients:" FontSize="Subtitle"/>

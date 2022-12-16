@@ -7,56 +7,46 @@
              x:Class="CookUs.View.Cart"
              Title="{Binding Title}">
 
-    <RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshCart}">
-        <StackLayout>
-            <CollectionView ItemsSource="{Binding Cart}" 
-                            SelectionMode="Multiple" 
-                            SelectedItems="{Binding SelectedItemsInCart}" 
-                            SelectionChanged="On_SelectionChanged"
-                            EmptyView="No ingredients in your cart" 
-                            x:Name="collectionView"
-                            HorizontalOptions="Center">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <SwipeView>
-                            <SwipeView.RightItems>
-                                <SwipeItems >
-                                    <SwipeItem Text="Delete"
-                                   IconImageSource="trash.png"
-                                   BackgroundColor="LightPink"
-                                   Command="{Binding RemoveFromCartCommand}"
-                                   CommandParameter="{Binding}" />
-                                </SwipeItems>
-                            </SwipeView.RightItems>
-                            <Grid RowDefinitions="auto, auto" x:DataType="model:Ingredient">
-                                <Label Grid.Row="0" Text="{Binding Name}" FontAttributes="Bold" FontSize="20" HorizontalOptions="Center"/>
-                                <Label Grid.Row="1" Text="{Binding Quantity}" FontSize="15" HorizontalOptions="Center"/>
-                            </Grid>
-                        </SwipeView>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-            <HorizontalStackLayout HorizontalOptions="Center">
-                <Button IsVisible="True" 
-                    x:Name="RemoveWindowsButton" 
-                    Command="{Binding RevomeSelectedIngredientsCommand}" 
-                    Text="Delete selected"
-                    ImageSource="delete.png"
-                    HeightRequest="60"
-                    WidthRequest="210"
-                    HorizontalOptions="Center"
-                    Margin="20"/>
+    <StackLayout>
+        <CollectionView ItemsSource="{Binding Cart}" 
+                        SelectionMode="Multiple" 
+                        SelectedItems="{Binding SelectedItemsInCart}" 
+                        SelectionChanged="On_SelectionChanged"
+                        EmptyView="No ingredients in your cart" 
+                        x:Name="collectionView"
+                        HorizontalOptions="Center">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
 
-                <Button IsVisible="True" 
-                    Command="{Binding RevomeAllIngredientsCommand}" 
-                    Text="Clean cart"
-                    ImageSource="trash.png"
-                    HeightRequest="60"
-                    WidthRequest="210"
-                    HorizontalOptions="Center"
-                    Margin="20"/>
-            </HorizontalStackLayout>
-            
-        </StackLayout>
-    </RefreshView>
+                    <Grid RowDefinitions="auto, auto" x:DataType="model:Ingredient">
+                        <Label Grid.Row="0" Text="{Binding Name}" FontAttributes="Bold" FontSize="20" HorizontalOptions="Center"/>
+                        <Label Grid.Row="1" Text="{Binding Quantity}" FontSize="15" HorizontalOptions="Center"/>
+                    </Grid>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <HorizontalStackLayout HorizontalOptions="Center">
+            <Button IsVisible="True" 
+                        x:Name="RemoveWindowsButton" 
+                        Command="{Binding RevomeSelectedIngredientsCommand}" 
+                        Text="Delete selected"
+                        ImageSource="delete.png"
+                        HeightRequest="60"
+                        WidthRequest="210"
+                        HorizontalOptions="Center"
+                        Margin="20"/>
+
+            <Button IsVisible="True" 
+                        x:Name="CleanCartButton" 
+                        Command="{Binding RevomeAllIngredientsCommand}" 
+                        Text="Clean cart"
+                        ImageSource="trash.png"
+                        HeightRequest="60"
+                        WidthRequest="210"
+                        HorizontalOptions="Center"
+                        Margin="20"/>
+        </HorizontalStackLayout>
+
+    </StackLayout>
 </ContentPage>

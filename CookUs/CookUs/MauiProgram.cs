@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using CookUs.ViewModel;
 using CookUs.View;
+using CookUs.Platforms.Android.AndroidView;
 
 namespace CookUs;
 
@@ -30,6 +31,7 @@ public static class MauiProgram
 
         builder.Services.AddTransient<CartViewModel>();
         builder.Services.AddTransient<Cart>();
+        builder.Services.AddTransient<AndroidCart>();
 
 #if DEBUG
 		builder.Logging.AddDebug();

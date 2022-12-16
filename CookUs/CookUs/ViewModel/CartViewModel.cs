@@ -10,8 +10,9 @@ namespace CookUs.ViewModel
 {
     public class CartViewModel : BaseViewModel
     {
-        public ObservableCollection<Ingredient> Cart { get; set; } = new();
+        public ObservableCollection<Ingredient> Cart { get; } = new();
         public ObservableCollection<object> SelectedItemsInCart { get; set; } = new();
+        public bool IsSwipeViewEnabled { get; set; } = true;
         public Command RefreshCart { get; }
         public Command RemoveFromCartCommand { get; }
         public Command RevomeSelectedIngredientsCommand { get; }
@@ -23,9 +24,8 @@ namespace CookUs.ViewModel
             LoadCartAsync();
             RefreshCart = new Command(LoadCartAsync);
             RemoveFromCartCommand = new Command(OnRemoveFromCart);
-            RevomeSelectedIngredientsCommand = new Command(OnRemoveSelectedIngredients);
+            RevomeSelectedIngredientsCommand = new Command(OnRemoveSelectedIngredientsAsync);
             RevomeAllIngredientsCommand = new Command(OnRemoveAllIngredients);
-
         }
 
         private void OnRemoveFromCart(object obj)
@@ -35,17 +35,23 @@ namespace CookUs.ViewModel
             DataStore.DeleteFromCartAsync(i);
         }
         
-        private void OnRemoveSelectedIngredients()
+        private async void OnRemoveSelectedIngredientsAsync()
         {
             if (SelectedItemsInCart == null)
             {
                 return;
             } else if (SelectedItemsInCart.Count == 1)
             {
-                DataStore.DeleteFromCartAsync(SelectedItemsInCart[0] as Ingredient);
+                if(!(await DataStore.DeleteFromCartAsync(SelectedItemsInCart[0] as Ingredient)))
+                {
+                    await Application.Current.MainPage.DisplayAlert("Error", "Failed to remove from cart", "OK");
+                }
             } else
             {
-                DataStore.DeleteMultipleFromCartAsync(SelectedItemsInCart.Cast<Ingredient>().ToList());
+                if (!(await DataStore.DeleteMultipleFromCartAsync(SelectedItemsInCart.Cast<Ingredient>().ToList())))
+                {
+                    await Application.Current.MainPage.DisplayAlert("Error", "Failed to remove from cart", "OK");
+                }
             }
             LoadCartAsync();
         }
@@ -58,18 +64,18 @@ namespace CookUs.ViewModel
 
         public async void LoadCartAsync()
         {
+            if (IsRefreshing) return;
             try
             {
                 IsRefreshing = true;
-                
+
                 var cart = await DataStore.GetCartAsync();
 
                 Cart.Clear();
-                foreach (var ingredients in cart)
+                foreach (Ingredient ingredient in cart)
                 {
-                    Cart.Add(ingredients);
+                    Cart.Add(ingredient);
                 }
-               
             }
             catch (Exception ex)
             {

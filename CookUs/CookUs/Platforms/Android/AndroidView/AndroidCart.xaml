@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CookUs.Platforms.Android.AndroidView.AndroidCart"
+             xmlns:viewmodel="clr-namespace:CookUs.ViewModel"
+             xmlns:model="clr-namespace:CookUs.Model"
+             x:DataType="viewmodel:CartViewModel"
+             Title="{Binding Title}">
+
+    <RefreshView >
+        <StackLayout>
+            <CollectionView ItemsSource="{Binding Cart}" 
+                            EmptyView="No ingredients in your cart" 
+                            HorizontalOptions="Center">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItems >
+                                    <SwipeItem Text="Delete"
+                                               IconImageSource="trash.png"
+                                               BackgroundColor="LightPink"
+                                               Command="{Binding RemoveFromCartCommand}"
+                                               CommandParameter="{Binding}" />
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+                            <Grid RowDefinitions="auto, auto" x:DataType="model:Ingredient">
+                                <Label Grid.Row="0" Text="{Binding Name}" FontAttributes="Bold" FontSize="20" HorizontalOptions="Center"/>
+                                <Label Grid.Row="1" Text="{Binding Quantity}" FontSize="15" HorizontalOptions="Center"/>
+                            </Grid>
+                        </SwipeView>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <Button x:Name="CleanCartButton" 
+                        Command="{Binding RevomeAllIngredientsCommand}" 
+                        Text="Clean cart"
+                        ImageSource="trash.png"
+                        HeightRequest="60"
+                        WidthRequest="210"
+                        HorizontalOptions="Center"
+                        Margin="20"/>
+            </HorizontalStackLayout>
+
+        </StackLayout>
+    </RefreshView>
+</ContentPage>

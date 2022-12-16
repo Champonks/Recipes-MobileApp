@@ -24,6 +24,7 @@ namespace CookUs.ViewModel
 
         public Ingredient IngredientSelected { get; set; }
         public string StepSelected { get; set; }
+        public string SeasonSelected { get; set; }
 
         public Command AddIngredientCommand { get; }
         public Command RemoveIngredientCommand { get; }
@@ -46,7 +47,12 @@ namespace CookUs.ViewModel
             if (InputFood.Length != 0 && InputQuantity.Length != 0)
             {
                 InputIngredients.Add(new Ingredient() { Name = InputFood, Quantity = InputQuantity });
+                InputFood = "";
+                InputQuantity = "";
+                OnPropertyChanged(nameof(InputFood));
+                OnPropertyChanged(nameof(InputQuantity));
             }
+            
         }
         private void OnRemoveIngredient()
         {
@@ -60,8 +66,9 @@ namespace CookUs.ViewModel
             if (InputStep.Length != 0)
             {
                 InputSteps.Add(InputStep);
+                InputStep = "";
+                OnPropertyChanged(nameof(InputStep));
             }
-            InputStep = "";
         }
         private void OnRemoveStep()
         {
@@ -73,11 +80,18 @@ namespace CookUs.ViewModel
 
         public async void AddRecipeAsync()
         {
-            if (InputName.Length != 0 && InputDescription.Length != 0 && InputTime.Length != 0 && InputIngredients.Count != 0 && InputSteps.Count != 0)
+            if (InputName.Length != 0 && InputDescription.Length != 0 && InputTime.Length != 0 && InputIngredients.Count != 0 && InputSteps.Count != 0 && SeasonSelected != null)
             {
-                Recipe recipe = new(InputName, InputDescription, InputServings, CookingSeason.All, InputTime, InputIngredients.ToList(), InputSteps.ToList());
-                await DataStore.AddRecipeAsync(recipe);
-                await Shell.Current.GoToAsync("..");
+                Recipe recipe = new(InputName, InputDescription, InputServings, (CookingSeason)Int32.Parse(SeasonSelected) , InputTime, InputIngredients.ToList(), InputSteps.ToList());
+
+                if (await DataStore.AddRecipeAsync(recipe))
+                {
+                    await Shell.Current.GoToAsync("..");
+                }
+                else
+                {
+                    await Shell.Current.DisplayAlert("Error", "An error occured while adding the recipe", "OK");
+                }
             } else
             {
                 await Application.Current.MainPage.DisplayAlert("Error", "Please fill all the fields", "OK");
