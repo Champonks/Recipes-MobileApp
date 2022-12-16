@@ -12,6 +12,7 @@ namespace CookUs.ViewModel
     {
         public ObservableCollection<Ingredient> Cart { get; } = new();
         public ObservableCollection<object> SelectedItemsInCart { get; set; } = new();
+        public bool IsSwipeViewEnabled { get; set; } = true;
         public Command RefreshCart { get; }
         public Command RemoveFromCartCommand { get; }
         public Command RevomeSelectedIngredientsCommand { get; }
@@ -25,7 +26,6 @@ namespace CookUs.ViewModel
             RemoveFromCartCommand = new Command(OnRemoveFromCart);
             RevomeSelectedIngredientsCommand = new Command(OnRemoveSelectedIngredientsAsync);
             RevomeAllIngredientsCommand = new Command(OnRemoveAllIngredients);
-
         }
 
         private void OnRemoveFromCart(object obj)

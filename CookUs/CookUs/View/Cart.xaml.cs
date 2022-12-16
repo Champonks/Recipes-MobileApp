@@ -10,14 +10,7 @@ public partial class Cart : ContentPage
 		InitializeComponent();
 		BindingContext = ViewModel = cartViewModel;
 
-        if (DeviceInfo.Idiom == DeviceIdiom.Desktop)
-        {
-            this.ToolbarItems.Add(new ToolbarItem("Refresh", "refresh.png", ViewModel.LoadCartAsync));
-        } else
-        {
-            RemoveWindowsButton.IsVisible = false;
-            collectionView.SelectionMode = SelectionMode.None;
-        }
+        this.ToolbarItems.Add(new ToolbarItem("Refresh", "refresh.png", ViewModel.LoadCartAsync));
     }
 
     //display the button only if there is selected items

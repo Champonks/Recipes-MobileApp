@@ -14,6 +14,9 @@
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
   <ItemGroup>
+    <MauiXaml Update="Platforms\Android\AndroidView\AndroidCart.xaml">
+      <SubType>Designer</SubType>
+    </MauiXaml>
     <MauiXaml Update="View\AddRecipe.xaml">
       <SubType>Designer</SubType>
     </MauiXaml>

@@ -19,14 +19,19 @@
                 <Label Text="{Binding Recipe.Description}" FontSize="Medium"/>
             </StackLayout>
 
-            <ListView ItemsSource="{Binding Recipe.Ingredients}" Margin="20, 20, 20, 0" HorizontalOptions="Center" SelectionMode="None" MaximumWidthRequest="500">
+            <ListView ItemsSource="{Binding Recipe.Ingredients}" 
+                      Margin="20, 20, 20, 0" 
+                      HorizontalOptions="Center" 
+                      SelectionMode="None" 
+                      MaximumWidthRequest="500"
+                      x:Name="listView">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.ContextActions>
                                 <MenuItem Text="Add to Cart" IconImageSource="add_to_cart.png"
-                                          Command="{Binding AddToCartCommand}"
-                                          CommandParameter="{Binding}" />
+                                          Command="{Binding Source={x:Reference listView}, Path=BindingContext.AddToCartCommand}"
+                                          CommandParameter="{Binding }" />
                             </ViewCell.ContextActions>
                             <StackLayout x:DataType="model:Ingredient">
                                 <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="Small" HorizontalTextAlignment="Center"/>

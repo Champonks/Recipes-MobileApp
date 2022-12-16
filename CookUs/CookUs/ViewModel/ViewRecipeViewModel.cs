@@ -1,4 +1,5 @@
 ﻿using CookUs.Model;
+using CookUs.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,11 +32,14 @@ namespace CookUs.ViewModel
 
         private async void OnAddToCartAsync(object obj)
         {
+            
             if (obj == null) return;
             Ingredient i = obj as Ingredient;
             if(!(await DataStore.AddToCartAsync(i))) {
                 await Application.Current.MainPage.DisplayAlert("Error", "Failed to add to cart", "OK");
             }
+            //update la view
+            OnPropertyChanged(nameof(Cart));
         }
 
         private async void OnAddAllToCartAsync()
@@ -47,7 +51,8 @@ namespace CookUs.ViewModel
             {
                 await Application.Current.MainPage.DisplayAlert("Success", "Added to cart", "OK");
             }
-            
+            //update la view
+            OnPropertyChanged(nameof(Cart));
         }
 
         public void ApplyQueryAttributes(IDictionary<string, object> query)

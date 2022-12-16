@@ -17,7 +17,7 @@
         </Tab>
 
         <Tab Title="Cart" Icon="cart.png">
-            <ShellContent ContentTemplate="{DataTemplate view:Cart}" />
+            <ShellContent ContentTemplate="{DataTemplate view:Cart}" x:Name="cartTab" />
         </Tab>
         
     </TabBar>
