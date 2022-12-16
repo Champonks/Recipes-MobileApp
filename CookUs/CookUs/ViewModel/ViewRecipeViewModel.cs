@@ -1,4 +1,5 @@
 ﻿using CookUs.Model;
+using CookUs.Platforms.Android.AndroidView;
 using CookUs.View;
 using System;
 using System.Collections.Generic;
@@ -23,11 +24,13 @@ namespace CookUs.ViewModel
         
         public Command AddToCartCommand { get; }
         public Command AddAllToCartCommand { get; }
+        public Command DeleteRecipeCommand { get; }
 
         public ViewRecipeViewModel()
         {
             AddToCartCommand = new Command(OnAddToCartAsync);
             AddAllToCartCommand = new Command(OnAddAllToCartAsync);
+            DeleteRecipeCommand = new Command(OnDeleteRecipeAsync);
         }
 
         private async void OnAddToCartAsync(object obj)
@@ -38,8 +41,14 @@ namespace CookUs.ViewModel
             if(!(await DataStore.AddToCartAsync(i))) {
                 await Application.Current.MainPage.DisplayAlert("Error", "Failed to add to cart", "OK");
             }
-            //update la view
-            OnPropertyChanged(nameof(Cart));
+            //update the view
+            if (DeviceInfo.Idiom != DeviceIdiom.Desktop)
+            {
+                OnPropertyChanged(nameof(AndroidCart));
+            } else
+            {
+                OnPropertyChanged(nameof(Cart));
+            }   
         }
 
         private async void OnAddAllToCartAsync()
@@ -51,10 +60,30 @@ namespace CookUs.ViewModel
             {
                 await Application.Current.MainPage.DisplayAlert("Success", "Added to cart", "OK");
             }
-            //update la view
-            OnPropertyChanged(nameof(Cart));
+            //update the view
+            if (DeviceInfo.Idiom != DeviceIdiom.Desktop)
+            {
+                OnPropertyChanged(nameof(AndroidCart));
+            }
+            else
+            {
+                OnPropertyChanged(nameof(Cart));
+            }
         }
 
+        private async void OnDeleteRecipeAsync(object obj)
+        {
+            if (obj == null) return;
+            Recipe recipe = obj as Recipe;
+            if (!(await DataStore.DeleteRecipeAsync(recipe)))
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "Failed to add to cart", "OK");
+            } else
+            {
+                await Shell.Current.GoToAsync("..");
+            }
+        }
+        
         public void ApplyQueryAttributes(IDictionary<string, object> query)
         {
             Recipe = query["Recipe"] as Recipe;

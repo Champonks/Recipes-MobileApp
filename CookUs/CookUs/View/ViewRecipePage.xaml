@@ -6,6 +6,12 @@
              x:Class="CookUs.View.ViewRecipePage"
              x:DataType="viewmodel:ViewRecipeViewModel"
              Title="{Binding Recipe.Name}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Delete"
+                     IconImageSource="delete_white.png"
+                     Command="{Binding DeleteRecipeCommand}"
+                     CommandParameter="{Binding Recipe}"/>
+    </ContentPage.ToolbarItems>
     <ScrollView>
         <VerticalStackLayout>
             <Image HeightRequest="300" Source="{Binding Recipe.Image}" />
@@ -31,7 +37,7 @@
                             <ViewCell.ContextActions>
                                 <MenuItem Text="Add to Cart" IconImageSource="add_to_cart.png"
                                           Command="{Binding Source={x:Reference listView}, Path=BindingContext.AddToCartCommand}"
-                                          CommandParameter="{Binding }" />
+                                          CommandParameter="{Binding}" />
                             </ViewCell.ContextActions>
                             <StackLayout x:DataType="model:Ingredient">
                                 <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="Small" HorizontalTextAlignment="Center"/>

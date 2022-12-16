@@ -35,24 +35,12 @@ namespace CookUs.Model
                 "Add any toppings"
             };
 
-            Recipe r1 = new("Burger", "Miam miam", 4, CookingSeason.All, "25min", ingredients, steps);
-            Recipe r2 = new("Pasta", "Italia", 2, CookingSeason.All, "30min", ingredients, steps);
-            Recipe r3 = new("Pizza", "MAMAMIA", 6, CookingSeason.All, "45min", ingredients, steps);
+            Recipe r1 = new("burger.jpg", "Burger", "Miam miam", 4, CookingSeason.All, "25min", ingredients, steps);
+            Recipe r2 = new("pates.jpg", "Pasta", "Italia", 2, CookingSeason.All, "30min", ingredients, steps);
+            Recipe r3 = new("pizza.jpg", "Pizza", "MAMAMIA", 6, CookingSeason.All, "45min", ingredients, steps);
 
             Recipes.Add(r1);
             Recipes.Add(r2);
-            Recipes.Add(r3);
-            Recipes.Add(r3);
-            Recipes.Add(r3);
-            Recipes.Add(r3);
-            Recipes.Add(r3);
-            Recipes.Add(r3);
-            Recipes.Add(r3);
-            Recipes.Add(r3);
-            Recipes.Add(r3);
-            Recipes.Add(r3);
-            Recipes.Add(r3);
-            Recipes.Add(r3);
             Recipes.Add(r3);
 
             Cart.Add(new Ingredient { Name = "Chicken", Quantity = "200g" });
@@ -76,7 +64,7 @@ namespace CookUs.Model
         Task<List<Recipe>> IDataStore.GetRecipesAsync(int start, int count)
         {
             int nbRecipes = Recipes.Count;
-            if (start < nbRecipes)
+            if (start < nbRecipes && nbRecipes != 0)
             {
                 if (count > (nbRecipes - start)) count = (nbRecipes - start);
                 return Task.FromResult(Recipes.GetRange(start, count));

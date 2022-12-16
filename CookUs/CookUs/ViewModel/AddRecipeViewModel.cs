@@ -1,4 +1,5 @@
 ﻿using CookUs.Model;
+using CookUs.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
