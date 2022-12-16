@@ -87,7 +87,6 @@ namespace CookUs.ViewModel
 
                 if (await DataStore.AddRecipeAsync(recipe))
                 {
-                    OnPropertyChanged(nameof(RecipesListPage));
                     await Shell.Current.GoToAsync("..");
                 }
                 else

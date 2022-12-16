@@ -42,18 +42,6 @@ namespace CookUs.Model
             Recipes.Add(r1);
             Recipes.Add(r2);
             Recipes.Add(r3);
-            Recipes.Add(r3);
-            Recipes.Add(r3);
-            Recipes.Add(r3);
-            Recipes.Add(r3);
-            Recipes.Add(r3);
-            Recipes.Add(r3);
-            Recipes.Add(r3);
-            Recipes.Add(r3);
-            Recipes.Add(r3);
-            Recipes.Add(r3);
-            Recipes.Add(r3);
-            Recipes.Add(r3);
 
             Cart.Add(new Ingredient { Name = "Chicken", Quantity = "200g" });
             Cart.Add(new Ingredient { Name = "Tomato", Quantity = "4" });
@@ -76,7 +64,7 @@ namespace CookUs.Model
         Task<List<Recipe>> IDataStore.GetRecipesAsync(int start, int count)
         {
             int nbRecipes = Recipes.Count;
-            if (start < nbRecipes)
+            if (start < nbRecipes && nbRecipes != 0)
             {
                 if (count > (nbRecipes - start)) count = (nbRecipes - start);
                 return Task.FromResult(Recipes.GetRange(start, count));
