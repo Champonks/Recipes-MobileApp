@@ -4,9 +4,9 @@ namespace CookUs.Platforms.Android.AndroidView;
 
 public partial class AndroidCart : ContentPage
 {
-	public AndroidCart(CartViewModel cartViewModel)
+	public AndroidCart()
 	{
 		InitializeComponent();
-        BindingContext = cartViewModel;
+        BindingContext = new CartViewModel();
     }
 }

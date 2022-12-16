@@ -1,4 +1,5 @@
 ﻿using CookUs.Model;
+using CookUs.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +12,17 @@ namespace CookUs.ViewModel
     {
         public static int SEASONAL_RECIPES_TO_SHOW = 3;
         public List<Recipe> SeasonalRecipes { get; set; } = new List<Recipe>();
+        public Command CreateRecipeCommand { get; }
         public HomeViewModel()
         {
             Title = "Home";
             LoadSeasonalRecipesAsync();
+            CreateRecipeCommand = new Command(OnCreateRecipe);
+        }
+
+        private async void OnCreateRecipe()
+        {
+            await Shell.Current.GoToAsync(nameof(AddRecipe), true);
         }
 
         private async void LoadSeasonalRecipesAsync()

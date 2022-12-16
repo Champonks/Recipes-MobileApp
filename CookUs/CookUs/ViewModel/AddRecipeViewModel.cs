@@ -1,4 +1,5 @@
 ﻿using CookUs.Model;
+using CookUs.View;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -86,6 +87,7 @@ namespace CookUs.ViewModel
 
                 if (await DataStore.AddRecipeAsync(recipe))
                 {
+                    OnPropertyChanged(nameof(RecipesListPage));
                     await Shell.Current.GoToAsync("..");
                 }
                 else
