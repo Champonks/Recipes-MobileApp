@@ -43,13 +43,18 @@ namespace CookUs.ViewModel
                 {
                     nbRecipesToLoad = 200;
                 }
-                var recipes = await DataStore.GetRecipesAsync(0, nbRecipesToLoad);
+                List<Recipe> recipes;
+                recipes = await DataStore.GetRecipesAsync(0, nbRecipesToLoad);
                 
                 Recipes.Clear();
-                foreach (var recipe in recipes)
+                if (recipes != null)
                 {
-                    Recipes.Add(recipe);
+                    foreach (Recipe recipe in recipes)
+                    {
+                        Recipes.Add(recipe);
+                    }
                 }
+                
                 RECIPES_LOADED = Recipes.Count;
             }
             catch (Exception ex)

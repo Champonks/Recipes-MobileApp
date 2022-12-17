@@ -70,7 +70,7 @@ namespace CookUs.Model
                 return Task.FromResult(Recipes.GetRange(start, count));
             } else
             {
-                return null;
+                return Task.FromResult<List<Recipe>>(null);
             }
         }
 

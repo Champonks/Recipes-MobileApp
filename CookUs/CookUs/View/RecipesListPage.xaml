@@ -8,7 +8,7 @@
              x:Class="CookUs.View.RecipesListPage"
              Title="{Binding Title}">
     <Shell.SearchHandler>
-        <search:SearchRecipe Placeholder="Hawaiian pizza" ShowsResults="true" >
+        <search:SearchRecipe Placeholder="Hawaiian pizza" ShowsResults="true" ClearPlaceholderEnabled="True">
             <search:SearchRecipe.ItemTemplate>
                 <DataTemplate x:DataType="model:Recipe">
                     <Grid Padding="10"
