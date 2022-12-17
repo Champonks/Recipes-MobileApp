@@ -38,10 +38,10 @@ namespace CookUs.ViewModel
             {
                 IsRefreshing = true;
                 int nbRecipesToLoad = 7;
-                //because on desktop, loading incrementally doesn't work
+                //because on desktop, loading incrementally doesn't work, so we load 500 recipes, for the moment this is okay. If there is too much recipes, we will have to put pages
                 if (DeviceInfo.Idiom == DeviceIdiom.Desktop)
                 {
-                    nbRecipesToLoad = 200;
+                    nbRecipesToLoad = 500;
                 }
                 List<Recipe> recipes;
                 recipes = await DataStore.GetRecipesAsync(0, nbRecipesToLoad);
@@ -74,13 +74,17 @@ namespace CookUs.ViewModel
             try
             {
                 IsRefreshing = true;
-                
-               
-                var recipes = await DataStore.GetRecipesAsync(RECIPES_LOADED, 5);
-                foreach (var recipe in recipes)
+
+                List<Recipe> recipes;
+                recipes = await DataStore.GetRecipesAsync(RECIPES_LOADED, 5);
+                if (recipes != null)
                 {
-                    Recipes.Add(recipe);
+                    foreach (Recipe recipe in recipes)
+                    {
+                        Recipes.Add(recipe);
+                    }
                 }
+
                 RECIPES_LOADED = Recipes.Count;
 
             }

@@ -25,4 +25,11 @@ public partial class Cart : ContentPage
             RemoveWindowsButton.IsVisible = true;
         }
     }
+
+    //to update the cart each time the page is displayed
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        ViewModel.LoadCartAsync();
+    }
 }
