@@ -31,7 +31,7 @@ namespace api.Controllers
             Recipe recipe = _map.Map<Recipe>(recipeDTO);
             _dataStore.AddRecipe(recipe);
             _dataStore.SaveChanges();
-            return CreatedAtRoute();
+            return Ok();
         }
     }
 }

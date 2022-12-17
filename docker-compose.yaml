@@ -8,24 +8,18 @@ services:
       - "8000:80"
     networks:
       - cookus-network
-      # - bridge-network
     environment:
-      MYSQL_SERVER_NAME: cookus-db
-    # env_file:
-    #   - cookus.env
+      MYSQL_SERVER_NAME: ${MYSQL_SERVER_NAME}
+    env_file:
+      - cookus.env
     depends_on:
       - cookus-db
 
   cookus-db:
     image: mysql:latest
-    container_name: cookus-db
-    # env_file:
-    #   - cookus.env
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: cookus
-      MYSQL_USER: user
-      MYSQL_PASSWORD: pass
+    container_name: ${MYSQL_SERVER_NAME}
+    env_file:
+      - cookus.env
     volumes:
       - ./SQLBindedVolume:/var/lib/mysql
     networks:
@@ -36,20 +30,17 @@ services:
       context: .
       dockerfile: Dockerfile.migration
     environment:
-      MYSQL_SERVER_NAME: cookus-db
+      MYSQL_SERVER_NAME: ${MYSQL_SERVER_NAME}
     container_name: cookus-migration
-    # env_file:
-    #   - cookus.env
+    env_file:
+      - cookus.env
     networks:
       - cookus-network
     tty:
       true
-    # command: bash -c "/root/.dotnet/tools/dotnet-ef database update"
     depends_on:
       - cookus-db
 
 networks:
   cookus-network:
     driver: bridge
-  # bridge-network:
-  #   driver: bridge
