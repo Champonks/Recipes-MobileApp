@@ -12,7 +12,7 @@
             <Image Source="cook_us.png" HorizontalOptions="Center" Margin="20, 20, 20, 0" MaximumWidthRequest="300"/>
 
             <Label Text="Cook them today!" FontSize="Title" HorizontalOptions="Center" Margin="25, 0"/>
-            <ListView ItemsSource="{Binding SeasonalRecipes}" HorizontalOptions="Center" SelectionMode="None" MinimumHeightRequest="250">
+            <ListView ItemsSource="{Binding SeasonalRecipes}" HorizontalOptions="Center" SelectionMode="None" MinimumHeightRequest="250" >
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="model:Recipe">
                         <ViewCell>

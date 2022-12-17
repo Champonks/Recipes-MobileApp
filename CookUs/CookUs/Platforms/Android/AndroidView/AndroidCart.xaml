@@ -11,9 +11,10 @@
         <StackLayout>
             <CollectionView ItemsSource="{Binding Cart}" 
                             EmptyView="No ingredients in your cart" 
-                            HorizontalOptions="Center">
+                            HorizontalOptions="Center"
+                            x:Name="collectionView">
                 <CollectionView.ItemTemplate>
-                    <DataTemplate>
+                    <DataTemplate x:DataType="model:Ingredient">
 
                         <SwipeView>
                             <SwipeView.RightItems>
@@ -21,11 +22,11 @@
                                     <SwipeItem Text="Delete"
                                                IconImageSource="trash.png"
                                                BackgroundColor="LightPink"
-                                               Command="{Binding RemoveFromCartCommand}"
-                                               CommandParameter="{Binding}" />
+                                               Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.RemoveFromCartCommand}"
+                                               CommandParameter="{Binding .}" />
                                 </SwipeItems>
                             </SwipeView.RightItems>
-                            <Grid RowDefinitions="auto, auto" x:DataType="model:Ingredient">
+                            <Grid RowDefinitions="auto, auto" >
                                 <Label Grid.Row="0" Text="{Binding Name}" FontAttributes="Bold" FontSize="20" HorizontalOptions="Center"/>
                                 <Label Grid.Row="1" Text="{Binding Quantity}" FontSize="15" HorizontalOptions="Center"/>
                             </Grid>

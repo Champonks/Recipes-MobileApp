@@ -18,7 +18,7 @@
                 <HorizontalStackLayout Padding="10, 0">
                     <Label Text="Servings:" VerticalOptions="Center" FontSize="Small"/>
                     <Label x:Name="_displayStepperLabel" Text="{Binding Source={x:Reference _stepper}, Path=Value}" VerticalOptions="Center" Padding="10, 0" FontSize="Small"/>
-                    <Stepper x:Name="_stepper" Value="{Binding InputServings}" Minimum="1" Maximum="12" VerticalOptions="Center"/>
+                    <Stepper x:Name="_stepper" Value="{Binding InputServings}" Minimum="1" Maximum="12" VerticalOptions="Center" MaximumWidthRequest="65"/>
                     
                 </HorizontalStackLayout>
 
@@ -33,65 +33,70 @@
                 <Label Text="Typically, what season is this dish?" FontSize="Small" Margin="5"/>
                 <HorizontalStackLayout RadioButtonGroup.GroupName="season" RadioButtonGroup.SelectedValue="{Binding SeasonSelected}">
                     
-                    <RadioButton Value="1">
+                    <RadioButton Value="1" MaximumHeightRequest="75" MaximumWidthRequest="75">
                         <RadioButton.Content>
                             <StackLayout>
                                 <Image Source="winter.png"
                                        HorizontalOptions="Center"
                                        VerticalOptions="Center" />
                                 <Label Text="Winter"
-                                       HorizontalOptions="Center"
-                                       VerticalOptions="End" />
-                            </StackLayout>
-                        </RadioButton.Content>
-                    </RadioButton>
-                    
-                    <RadioButton Value="2">
-                        <RadioButton.Content>
-                            <StackLayout>
-                                <Image Source="spring.png"
-                                       HorizontalOptions="Center"
-                                       VerticalOptions="Center" />
-                                <Label Text="Spring"
-                                       HorizontalOptions="Center"
-                                       VerticalOptions="End" />
-                            </StackLayout>
-                        </RadioButton.Content>
-                    </RadioButton>
-                    
-                    <RadioButton Value="3">
-                        <RadioButton.Content>
-                            <StackLayout>
-                                <Image Source="summer.png"
-                                       HorizontalOptions="Center"
-                                       VerticalOptions="Center" />
-                                <Label Text="Summer"
-                                       HorizontalOptions="Center"
-                                       VerticalOptions="End" />
-                            </StackLayout>
-                        </RadioButton.Content>
-                    </RadioButton>
-                    
-                    <RadioButton Value="4">
-                        <RadioButton.Content>
-                            <StackLayout>
-                                <Image Source="autumn.png"
-                                       HorizontalOptions="Center"
-                                       VerticalOptions="Center" />
-                                <Label Text="Autumn"
+                                       FontSize="10"
                                        HorizontalOptions="Center"
                                        VerticalOptions="End" />
                             </StackLayout>
                         </RadioButton.Content>
                     </RadioButton>
 
-                    <RadioButton Value="0">
+                    <RadioButton Value="2" MaximumHeightRequest="75" MaximumWidthRequest="75">
+                        <RadioButton.Content>
+                            <StackLayout>
+                                <Image Source="spring.png"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center" />
+                                <Label Text="Spring"
+                                       FontSize="10"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="End" />
+                            </StackLayout>
+                        </RadioButton.Content>
+                    </RadioButton>
+
+                    <RadioButton Value="3" MaximumHeightRequest="75" MaximumWidthRequest="75">
+                        <RadioButton.Content>
+                            <StackLayout>
+                                <Image Source="summer.png"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center" />
+                                <Label Text="Summer"
+                                       FontSize="10"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="End" />
+                            </StackLayout>
+                        </RadioButton.Content>
+                    </RadioButton>
+
+                    <RadioButton Value="4" MaximumHeightRequest="75" MaximumWidthRequest="75">
+                        <RadioButton.Content>
+                            <StackLayout>
+                                <Image Source="autumn.png"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="Center" />
+                                <Label Text="Autumn"
+                                       FontSize="10"
+                                       HorizontalOptions="Center"
+                                       VerticalOptions="End" />
+                            </StackLayout>
+                        </RadioButton.Content>
+                    </RadioButton>
+
+                    <RadioButton Value="0" MaximumHeightRequest="75" MaximumWidthRequest="75">
                         <RadioButton.Content>
                             <StackLayout>
                                 <Image Source="all_seasons.png"
                                        HorizontalOptions="Center"
                                        VerticalOptions="Center" />
                                 <Label Text="All"
+                                       FontSize="10"
                                        HorizontalOptions="Center"
                                        VerticalOptions="End" />
                             </StackLayout>
@@ -126,16 +131,9 @@
                 </CollectionView>
             </Frame>
             <HorizontalStackLayout VerticalOptions="Center">
-                <HorizontalStackLayout>
-                    <Label Text="Quantity:" VerticalOptions="Center" />
-                    <Entry Text="{Binding InputQuantity}" MinimumWidthRequest="100" Margin="10, 0" Placeholder="400g"/>
-                </HorizontalStackLayout>
-
-                <HorizontalStackLayout>
-                    <Label Text="Food:" VerticalOptions="Center"/>
-                    <Entry Text="{Binding InputFood}" MinimumWidthRequest="100" Margin="10, 0" Placeholder="Minced steak"/>
-                </HorizontalStackLayout>
-                <Button Text="Add ingredient" Command="{Binding AddIngredientCommand}" MaximumWidthRequest="150"/>
+                <Entry Text="{Binding InputQuantity}" MinimumWidthRequest="100" Margin="10, 0" Placeholder="400g" MaximumWidthRequest="150"/>
+                <Entry Text="{Binding InputFood}" MinimumWidthRequest="100" Margin="10, 0" Placeholder="Minced steak" MaximumWidthRequest="150"/>
+                <Button Text="Add ingredient" Command="{Binding AddIngredientCommand}" MaximumWidthRequest="125"/>
             </HorizontalStackLayout>
             <Button Text="Remove selected ingredient" Command="{Binding RemoveIngredientCommand}" />
 

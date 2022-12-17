@@ -32,14 +32,14 @@
                       MaximumWidthRequest="500"
                       x:Name="listView">
                 <ListView.ItemTemplate>
-                    <DataTemplate>
+                    <DataTemplate x:DataType="model:Ingredient">
                         <ViewCell>
                             <ViewCell.ContextActions>
                                 <MenuItem Text="Add to Cart" IconImageSource="add_to_cart.png"
                                           Command="{Binding Source={x:Reference listView}, Path=BindingContext.AddToCartCommand}"
-                                          CommandParameter="{Binding}" />
+                                          CommandParameter="{Binding .}" />
                             </ViewCell.ContextActions>
-                            <StackLayout x:DataType="model:Ingredient">
+                            <StackLayout>
                                 <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="Small" HorizontalTextAlignment="Center"/>
                                 <Label Text="{Binding Quantity}" FontSize="Micro" HorizontalTextAlignment="Center"/>
                             </StackLayout>
@@ -59,7 +59,7 @@
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="x:String">
                         <ViewCell>
-                            <Label Text="{Binding}" FontSize="Small" Margin="20" HorizontalTextAlignment="Center"/>
+                            <Label Text="{Binding .}" FontSize="Small" Margin="20" HorizontalTextAlignment="Center"/>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

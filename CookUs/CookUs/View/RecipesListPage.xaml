@@ -8,7 +8,7 @@
              x:Class="CookUs.View.RecipesListPage"
              Title="{Binding Title}">
     <Shell.SearchHandler>
-        <search:SearchRecipe Placeholder="Hawaiian pizza" ShowsResults="true" >
+        <search:SearchRecipe Placeholder="Hawaiian pizza" ShowsResults="true" ClearPlaceholderEnabled="True">
             <search:SearchRecipe.ItemTemplate>
                 <DataTemplate x:DataType="model:Recipe">
                     <Grid Padding="10"
@@ -27,8 +27,8 @@
         </search:SearchRecipe>
     </Shell.SearchHandler>
 
-    <FlexLayout>
-        <RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshRecipes}">
+    <Grid>
+        <RefreshView IsRefreshing="{Binding IsRefreshing}" Command="{Binding RefreshRecipes}" ZIndex="2">
 
             <CollectionView ItemsSource="{Binding Recipes}" 
                             EmptyView="Nothing to cook!"
@@ -61,19 +61,18 @@
                 </CollectionView.ItemTemplate>
             </CollectionView>
         </RefreshView>
-        <AbsoluteLayout MaximumWidthRequest="0" >
-            <Button AbsoluteLayout.LayoutBounds="1, 1, 100, 100"
-                    AbsoluteLayout.LayoutFlags="PositionProportional"
-                    Text="+"
-                    Command="{Binding AddRecipeCommand}"
-                    FontSize="Large"
-                    BackgroundColor="DodgerBlue"
-                    TextColor="White"
-                    CornerRadius="25"
-                    HeightRequest="50"
-                    WidthRequest="50" 
-                    ZIndex="100"/>
-        </AbsoluteLayout>
-    </FlexLayout>
+        <Button Text="+"
+                VerticalOptions="End"
+                HorizontalOptions="End"
+                Margin="0,0,20,20"
+                Command="{Binding AddRecipeCommand}"
+                FontSize="Large"
+                BackgroundColor="DodgerBlue"
+                TextColor="White"
+                CornerRadius="25"
+                HeightRequest="50"
+                WidthRequest="50" 
+                ZIndex="5"/>
+    </Grid>
     
 </ContentPage>

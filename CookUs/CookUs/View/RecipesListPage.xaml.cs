@@ -22,4 +22,10 @@ public partial class RecipesListPage : ContentPage
         Recipe recipe = ((VisualElement)sender).BindingContext as Recipe;
         await ViewModel.OnViewRecipeDetails(recipe);
     }
+    //to reload the list of recipes when the page is displayed
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        ViewModel.LoadRecipesAsync();
+    }
 }

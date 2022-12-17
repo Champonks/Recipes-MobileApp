@@ -41,14 +41,6 @@ namespace CookUs.ViewModel
             if(!(await DataStore.AddToCartAsync(i))) {
                 await Application.Current.MainPage.DisplayAlert("Error", "Failed to add to cart", "OK");
             }
-            //update the view
-            if (DeviceInfo.Idiom != DeviceIdiom.Desktop)
-            {
-                OnPropertyChanged(nameof(AndroidCart));
-            } else
-            {
-                OnPropertyChanged(nameof(Cart));
-            }   
         }
 
         private async void OnAddAllToCartAsync()
@@ -59,15 +51,6 @@ namespace CookUs.ViewModel
             } else
             {
                 await Application.Current.MainPage.DisplayAlert("Success", "Added to cart", "OK");
-            }
-            //update the view
-            if (DeviceInfo.Idiom != DeviceIdiom.Desktop)
-            {
-                OnPropertyChanged(nameof(AndroidCart));
-            }
-            else
-            {
-                OnPropertyChanged(nameof(Cart));
             }
         }
 
