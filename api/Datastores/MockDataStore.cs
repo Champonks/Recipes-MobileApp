@@ -52,6 +52,25 @@ namespace api.Datastores
 
         public void SaveChanges()
         {
+        }
+
+        public void AddCartItem(CartItem cartItem)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddUser(User user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public User GetUser(string login, string password)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<CartItem> GetCartItems(string userToken)
+        {
             throw new NotImplementedException();
         }
     }

@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace api.Model
 {
     public enum CookingSeason
@@ -17,7 +19,12 @@ namespace api.Model
         public double Servings { get; set; }
         public CookingSeason RecipeSeason { get; set; }
         public string Time { get; set; }
+        
         public List<Ingredient> Ingredients { get; set; }
         public List<Step> Steps { get; set; }
+
+        public string UserLogin { get; set; }
+        [ForeignKey("UserLogin")]
+        public User Author { get; set; }
     }
 }

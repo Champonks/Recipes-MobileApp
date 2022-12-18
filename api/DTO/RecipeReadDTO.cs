@@ -13,5 +13,6 @@ namespace api.DTO
         public string Time { get; set; }
         public List<Ingredient> Ingredients { get; set; }
         public List<Step> Steps { get; set; }
+        public User Author { get; set; }
     }
 }
