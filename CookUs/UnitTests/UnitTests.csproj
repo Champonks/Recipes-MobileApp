@@ -6,7 +6,6 @@
     <Nullable>enable</Nullable>
 
     <IsPackable>false</IsPackable>
-	<OutputType Condition="'$(TargetFramework)' != 'net7.0'">Exe</OutputType>
   </PropertyGroup>
 
   <ItemGroup>

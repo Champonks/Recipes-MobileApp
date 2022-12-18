@@ -11,7 +11,7 @@ namespace CookUs.Model
     {
         public List<Recipe> Recipes { get; set; }
         public List<Ingredient> Cart { get; set; }
-        RecipesServices recipesServices { get; } = new RecipesServices();
+        private RecipesServices RecipesServices { get; } = new RecipesServices();
 
         public Task<bool> AddAllToCartAsync(List<Ingredient> ingredient)
         {
@@ -20,7 +20,7 @@ namespace CookUs.Model
 
         public async Task<bool> AddRecipeAsync(Recipe recipe)
         {
-            return await recipesServices.AddRecipeAsync(recipe) != null;
+            return await RecipesServices.AddRecipeAsync(recipe) != null;
         }
 
         public Task<bool> AddToCartAsync(Ingredient ingredient)
@@ -45,7 +45,7 @@ namespace CookUs.Model
 
         public async Task<List<Recipe>> GetAllRecipesAsync()
         {
-            return await recipesServices.GetAllRecipesAsync();
+            return await RecipesServices.GetAllRecipesAsync();
         }
 
         public Task<List<Ingredient>> GetCartAsync()

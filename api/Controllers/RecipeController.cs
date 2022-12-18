@@ -19,7 +19,29 @@ namespace api.Controllers
             _map = mapper;
         }
 
-        //not efficient, find how to do better
+        [HttpGet("{id}", Name = nameof(GetRecipeById))]
+        public ActionResult GetRecipeById(int id)
+        {
+            Recipe recipe = _dataStore.GetRecipeById(id);
+            if (recipe == null)
+            {
+                return NotFound();
+            }
+            RecipeReadDTO recipeRead = _map.Map<RecipeReadDTO>(recipe);
+            User u = _dataStore.GetUserInfos(recipe.UserLogin);
+            if (u == null)
+            {
+                return NotFound();
+            }
+            recipeRead.Author = _map.Map<UserReadDTO>(u);
+            IEnumerable<Ingredient> ingredients = _dataStore.GetIngredientsByRecipeId(recipe.Id);
+            recipeRead.Ingredients = _map.Map<List<IngredientReadDTO>>(ingredients);
+            IEnumerable<Step> steps = _dataStore.GetStepsByRecipeId(recipe.Id);
+            recipeRead.Steps = _map.Map<List<StepReadDTO>>(steps);
+            return Ok(recipeRead);
+        }
+
+        //not efficient, find how to do better, and do not work
         [HttpGet]
         public ActionResult GetAllRecipes()
         {

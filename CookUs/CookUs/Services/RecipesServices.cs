@@ -22,15 +22,17 @@ namespace CookUs.Services
             return recipes;
         }
 
-        //public async Task<List<Recipe>> GetSeasonalRecipesAsync(int count)
-        //{
-        //    var response = await client.GetAsync($"recipes/seasonal/{count}");
-        //    string content = "";
+        public async Task<List<Recipe>> GetRecipeAsync(int id)
+        {
+            List<Recipe> recipes = await client.GetFromJsonAsync<List<Recipe>>(id.ToString());
+            return recipes;
+        }
 
-        //    if (response.IsSuccessStatusCode) content = await response.Content.ReadAsStringAsync();
-
-        //    return Newtonsoft.Json.JsonConvert.DeserializeObject<List<Recipe>>(content);
-        //}
+        public async Task<List<Recipe>> GetSeasonalRecipesAsync(int count)
+        {
+            List<Recipe> recipes = await client.GetFromJsonAsync<List<Recipe>>($"seasonal/{count}");
+            return recipes;
+        }
 
         public async Task<Recipe> AddRecipeAsync(Recipe recipe)
         {
