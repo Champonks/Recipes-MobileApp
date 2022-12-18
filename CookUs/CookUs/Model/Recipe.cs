@@ -16,6 +16,7 @@ namespace CookUs.Model
     }
     public class Recipe
     {
+        public static int CURRENT_ID = 0;
         public int Id { get; set; }
         public string Image { get; set; }
         public string Name { get; set; }
@@ -32,6 +33,7 @@ namespace CookUs.Model
 
         public Recipe(string image, string name, string description, double servings, CookingSeason recipeSeason, string time, List<Ingredient> ingredients, List<string> steps)
         {
+            Id = CURRENT_ID++;
             Image = image;
             Name = name;
             Description = description;
@@ -44,7 +46,9 @@ namespace CookUs.Model
 
         public Recipe(string name, string description, double servings, CookingSeason recipeSeason, string time, List<Ingredient> ingredients, List<string> steps)
         {
+            Id = CURRENT_ID++;
             Name = name;
+            Image = "default_recipe_img.jpg";
             Description = description;
             Servings = servings;
             RecipeSeason = recipeSeason;
