@@ -13,8 +13,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IDataStore, MySQLDataStore>();
 
-string _connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<RecipeContext>(options => options.UseMySql(_connectionString, ServerVersion.AutoDetect(_connectionString)));
+string _connectionString = $"server={builder.Configuration["MYSQL_SERVER_NAME"]}; database={builder.Configuration["MYSQL_DATABASE"]}; user={builder.Configuration["MYSQL_USER"]}; password={builder.Configuration["MYSQL_PASSWORD"]}";
+//string _connectionString = $"server=localhost; database=cookus; user=root; password=root";
+builder.Services.AddDbContext<CookUsContext>(options => options.UseMySql(_connectionString, ServerVersion.AutoDetect(_connectionString)));
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 

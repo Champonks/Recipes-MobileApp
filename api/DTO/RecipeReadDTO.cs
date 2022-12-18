@@ -11,7 +11,8 @@ namespace api.DTO
         public double Servings { get; set; }
         public CookingSeason RecipeSeason { get; set; }
         public string Time { get; set; }
-        public List<Ingredient> Ingredients { get; set; }
-        public List<Step> Steps { get; set; }
+        public List<IngredientReadDTO> Ingredients { get; set; }
+        public List<StepReadDTO> Steps { get; set; }
+        public UserReadDTO Author { get; set; }
     }
 }

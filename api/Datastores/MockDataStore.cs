@@ -45,12 +45,106 @@ namespace api.Datastores
             return Recipes;
         }
 
-        public void AddRecipe(Recipe recipe)
+        public void AddRecipe(Recipe recipe, string userToken)
         {
             Recipes.Add(recipe);
         }
 
         public void SaveChanges()
+        {
+        }
+
+        public Recipe GetRecipeById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Recipe> GetSeasonalRecipes(int count)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddRecipe(Recipe recipe)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteRecipe(Recipe r)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<CartItem> GetCartItems(string userToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddCartItem(CartItem cartItem)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddCartItems(IEnumerable<CartItem> cartItems)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteCartItem(CartItem cartItem)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteCartItems(IEnumerable<CartItem> cartItems)
+        {
+            throw new NotImplementedException();
+        }
+
+        public User Connect(string login, string password)
+        {
+            throw new NotImplementedException();
+        }
+
+        public User GetUserByToken(string token)
+        {
+            throw new NotImplementedException();
+        }
+
+        public User GetUserInfos(string login)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void AddUser(User user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public CartItem GetCartItemById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<CartItem> GetCartItemsById(IEnumerable<int> id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Ingredient> GetIngredientsByRecipeId(int recipeId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Ingredient> GetStepsByRecipeId(int recipeId)
+        {
+            throw new NotImplementedException();
+        }
+
+        IEnumerable<Step> IDataStore.GetStepsByRecipeId(int recipeId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Ingredient GetIngredientById(int id)
         {
             throw new NotImplementedException();
         }

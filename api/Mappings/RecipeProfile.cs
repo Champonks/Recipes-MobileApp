@@ -10,11 +10,20 @@ namespace api.Mappings
         {
             // Source -> Target
             CreateMap<Recipe, RecipeReadDTO>();
+            CreateMap<RecipeWriteDTO, Recipe>();
+
             CreateMap<Ingredient, IngredientReadDTO>();
+            CreateMap<IngredientWriteDTO, Ingredient>();
+
             CreateMap<Step, StepReadDTO>();
-            CreateMap<Recipe, RecipeWriteDTO>();
-             CreateMap<Ingredient, IngredientWriteDTO>();
-            CreateMap<Step, StepWriteDTO>();
+            CreateMap<StepWriteDTO, Step>();
+            
+            CreateMap<User, UserReadDTO>();
+            CreateMap<UserWriteDTO, User>();
+            CreateMap<User, UserConnectedReadDTO>();
+
+            CreateMap<CartItem, CartItemReadDTO>();
+            CreateMap<CartItemWriteDTO, CartItem>();
         }
     }
 }
