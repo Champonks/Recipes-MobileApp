@@ -138,5 +138,10 @@ namespace CookUs.Model
             }
             return Task.FromResult(true);
         }
+
+        public Task<List<Recipe>> GetAllRecipesAsync()
+        {
+            return Task.FromResult(Recipes);
+        }
     }
 }

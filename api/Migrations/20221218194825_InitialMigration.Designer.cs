@@ -10,7 +10,7 @@ using api.Contexts;
 namespace api.Migrations
 {
     [DbContext(typeof(CookUsContext))]
-    [Migration("20221218130629_InitialMigration")]
+    [Migration("20221218194825_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -64,7 +64,7 @@ namespace api.Migrations
 
                     b.HasIndex("RecipeId");
 
-                    b.ToTable("Ingredient");
+                    b.ToTable("Ingredients");
                 });
 
             modelBuilder.Entity("api.Model.Recipe", b =>
@@ -125,13 +125,17 @@ namespace api.Migrations
 
                     b.HasIndex("RecipeId");
 
-                    b.ToTable("Step");
+                    b.ToTable("Steps");
                 });
 
             modelBuilder.Entity("api.Model.User", b =>
                 {
                     b.Property<string>("Login")
                         .HasColumnType("varchar(255)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Password")
                         .IsRequired()

@@ -19,5 +19,7 @@ namespace api.Contexts
         public DbSet<Recipe> Recipes { get; set; }
         public DbSet<CartItem> Cart { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Ingredient> Ingredients { get; set; }
+        public DbSet<Step> Steps { get; set; }
     }
 }

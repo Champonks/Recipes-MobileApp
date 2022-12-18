@@ -20,6 +20,8 @@ namespace api.Migrations
                 {
                     Login = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
+                    Name = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
                     Token = table.Column<string>(type: "varchar(255)", nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     Password = table.Column<string>(type: "longtext", nullable: false)
@@ -63,7 +65,7 @@ namespace api.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Ingredient",
+                name: "Ingredients",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -76,9 +78,9 @@ namespace api.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Ingredient", x => x.Id);
+                    table.PrimaryKey("PK_Ingredients", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Ingredient_Recipes_RecipeId",
+                        name: "FK_Ingredients_Recipes_RecipeId",
                         column: x => x.RecipeId,
                         principalTable: "Recipes",
                         principalColumn: "Id",
@@ -87,7 +89,7 @@ namespace api.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Step",
+                name: "Steps",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -98,9 +100,9 @@ namespace api.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Step", x => x.Id);
+                    table.PrimaryKey("PK_Steps", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Step_Recipes_RecipeId",
+                        name: "FK_Steps_Recipes_RecipeId",
                         column: x => x.RecipeId,
                         principalTable: "Recipes",
                         principalColumn: "Id",
@@ -122,9 +124,9 @@ namespace api.Migrations
                 {
                     table.PrimaryKey("PK_Cart", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Cart_Ingredient_IngredientId",
+                        name: "FK_Cart_Ingredients_IngredientId",
                         column: x => x.IngredientId,
-                        principalTable: "Ingredient",
+                        principalTable: "Ingredients",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -147,8 +149,8 @@ namespace api.Migrations
                 column: "UserLogin");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Ingredient_RecipeId",
-                table: "Ingredient",
+                name: "IX_Ingredients_RecipeId",
+                table: "Ingredients",
                 column: "RecipeId");
 
             migrationBuilder.CreateIndex(
@@ -157,8 +159,8 @@ namespace api.Migrations
                 column: "UserLogin");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Step_RecipeId",
-                table: "Step",
+                name: "IX_Steps_RecipeId",
+                table: "Steps",
                 column: "RecipeId");
 
             migrationBuilder.CreateIndex(
@@ -175,10 +177,10 @@ namespace api.Migrations
                 name: "Cart");
 
             migrationBuilder.DropTable(
-                name: "Step");
+                name: "Steps");
 
             migrationBuilder.DropTable(
-                name: "Ingredient");
+                name: "Ingredients");
 
             migrationBuilder.DropTable(
                 name: "Recipes");

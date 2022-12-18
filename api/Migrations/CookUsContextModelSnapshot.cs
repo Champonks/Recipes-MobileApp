@@ -61,7 +61,7 @@ namespace api.Migrations
 
                     b.HasIndex("RecipeId");
 
-                    b.ToTable("Ingredient");
+                    b.ToTable("Ingredients");
                 });
 
             modelBuilder.Entity("api.Model.Recipe", b =>
@@ -122,13 +122,17 @@ namespace api.Migrations
 
                     b.HasIndex("RecipeId");
 
-                    b.ToTable("Step");
+                    b.ToTable("Steps");
                 });
 
             modelBuilder.Entity("api.Model.User", b =>
                 {
                     b.Property<string>("Login")
                         .HasColumnType("varchar(255)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Password")
                         .IsRequired()

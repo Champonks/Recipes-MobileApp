@@ -4,7 +4,7 @@ namespace api.Utilities
     {
         public static string TokenGenerator()
         {
-            return Convert.ToBase64String(Guid.NewGuid().ToByteArray());
+            return Guid.NewGuid().ToString();
         }
     }
 }

@@ -20,6 +20,7 @@ namespace api.Mappings
             
             CreateMap<User, UserReadDTO>();
             CreateMap<UserWriteDTO, User>();
+            CreateMap<User, UserConnectedReadDTO>();
 
             CreateMap<CartItem, CartItemReadDTO>();
             CreateMap<CartItemWriteDTO, CartItem>();
