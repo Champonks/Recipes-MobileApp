@@ -1,6 +1,8 @@
 # Recipes-MobileApp
 To use the app :
 
+Have Docker Engine on your machine.
+
 `docker-compose up`
 
 The first time, you have to migrate the database. To do so:
