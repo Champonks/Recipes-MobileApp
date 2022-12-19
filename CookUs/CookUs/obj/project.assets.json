@@ -28886,11 +28886,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "A:\\A_Dossiers\\Documents\\Etudes\\Université\\Semestre 5 INFO\\C#.NET\\Recipes-MobileApp\\CookUs\\CookUs\\CookUs.csproj",
+      "projectUniqueName": "C:\\Users\\gaeta\\Documents\\Semestre 5 INFO\\C#.NET\\Recipes-MobileApp\\CookUs\\CookUs\\CookUs.csproj",
       "projectName": "CookUs",
-      "projectPath": "A:\\A_Dossiers\\Documents\\Etudes\\Université\\Semestre 5 INFO\\C#.NET\\Recipes-MobileApp\\CookUs\\CookUs\\CookUs.csproj",
+      "projectPath": "C:\\Users\\gaeta\\Documents\\Semestre 5 INFO\\C#.NET\\Recipes-MobileApp\\CookUs\\CookUs\\CookUs.csproj",
       "packagesPath": "C:\\Users\\gaeta\\.nuget\\packages\\",
-      "outputPath": "A:\\A_Dossiers\\Documents\\Etudes\\Université\\Semestre 5 INFO\\C#.NET\\Recipes-MobileApp\\CookUs\\CookUs\\obj\\",
+      "outputPath": "C:\\Users\\gaeta\\Documents\\Semestre 5 INFO\\C#.NET\\Recipes-MobileApp\\CookUs\\CookUs\\obj\\",
       "projectStyle": "PackageReference",
       "crossTargeting": true,
       "fallbackFolders": [

@@ -28,6 +28,22 @@ namespace CookUs.Model
                 new Ingredient() { Name = "Carrots", Quantity = "5" }
             };
 
+            List<Ingredient> ingredients2 = new()
+            {
+                new Ingredient() { Name = "Cream", Quantity = "1L" },
+                new Ingredient() { Name = "Curry", Quantity = "5g" },
+                new Ingredient() { Name = "Rice", Quantity = "1kg" },
+                new Ingredient() { Name = "Chicken", Quantity = "600g" }
+            };
+
+            List<Ingredient> ingredientsRaclette = new()
+            {
+                new Ingredient() { Name = "Raclette", Quantity = "600g" },
+                new Ingredient() { Name = "Charcuterie", Quantity = "1kg" },
+                new Ingredient() { Name = "Potatoes", Quantity = "2kg" },
+                new Ingredient() { Name = "Vegetables", Quantity = "600g" }
+            };
+
             List<string> steps = new()
             {
                 "Put Bread in the oven",
@@ -35,12 +51,32 @@ namespace CookUs.Model
                 "Add any toppings"
             };
 
+            List<string> steps2 = new()
+            {
+                "Cook the chicken",
+                "Add the curry sauce",
+                "Add the rice",
+                "Add the vegetables"
+            };
+
+            List<string> stepsRaclette = new()
+            {
+                "Cook the potatoes",
+                "Dispose the meet",
+                "Add the melting cheese",
+                "Add the vegetables"
+            };
+
+            Recipe r0 = new("Chicken Curry", "Awesome chicken with wonderful curry spicy.", 6, CookingSeason.Winter, "35min", ingredients2, steps2);
             Recipe r1 = new("burger.jpg", "Burger", "Miam miam", 4, CookingSeason.All, "25min", ingredients, steps);
             Recipe r2 = new("pates.jpg", "Pasta", "Italia", 2, CookingSeason.All, "30min", ingredients, steps);
-            Recipe r3 = new("pizza.jpg", "Pizza", "MAMAMIA", 6, CookingSeason.All, "45min", ingredients, steps);
+            Recipe r3 = new("pizza.jpg", "Pizza", "MAMAMIA", 6, CookingSeason.Autumn, "45min", ingredients, steps);
+            Recipe r4 = new("raclette.jpg", "Raclette", "Delicious winter recipe", 12, CookingSeason.Winter, "20min", ingredientsRaclette, stepsRaclette);
 
+            Recipes.Add(r4);
             Recipes.Add(r1);
             Recipes.Add(r2);
+            Recipes.Add(r0);
             Recipes.Add(r3);
 
             Cart.Add(new Ingredient { Name = "Chicken", Quantity = "200g" });

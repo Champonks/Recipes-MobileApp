@@ -14,7 +14,7 @@ namespace UnitTests
         {
             string name = "John Doe";
             string password = "password123";
-            string login = "john.doe@example.com";
+            string login = "johnit.doe@example.com";
             // Arrange
             var user = new User
             {
@@ -27,22 +27,23 @@ namespace UnitTests
 
             // Act
             bool isAdded = await userServices.AddUserAsync(user);
+            bool isTwoTimesAdded = await userServices.AddUserAsync(user);
             
             User addedUser = await userServices.GetUserAsync(login);
 
             // Assert
             Assert.True(isAdded);
-            Assert.Equal(user, addedUser);
+            Assert.False(isTwoTimesAdded);
             Assert.Equal(name, addedUser.Name);
-            Assert.Equal(password, addedUser.Password);
+            Assert.Null(addedUser.Password);
             Assert.Equal(login, addedUser.Login);
         }
-
+        [Fact]
         public async void TestConnection()
         {
             string name = "John Doe";
             string password = "pass";
-            string login = "john@gmail.com";
+            string login = "johni@gmail.com";
             // Arrange
             var user = new User
             {

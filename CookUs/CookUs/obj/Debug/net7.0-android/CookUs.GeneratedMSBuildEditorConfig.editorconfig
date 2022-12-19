@@ -12,63 +12,63 @@ build_property.EnableSingleFileAnalyzer = true
 build_property.EnableTrimAnalyzer = false
 build_property.IncludeAllContentForSelfExtract = 
 build_property.RootNamespace = CookUs
-build_property.ProjectDir = a:\A_Dossiers\Documents\Etudes\Université\Semestre 5 INFO\C#.NET\Recipes-MobileApp\CookUs\CookUs\
+build_property.ProjectDir = c:\Users\gaeta\Documents\Semestre 5 INFO\C#.NET\Recipes-MobileApp\CookUs\CookUs\
 
-[a:/A_Dossiers/Documents/Etudes/Université/Semestre 5 INFO/C\#.NET/Recipes-MobileApp/CookUs/CookUs/App.xaml]
+[c:/Users/gaeta/Documents/Semestre 5 INFO/C\#.NET/Recipes-MobileApp/CookUs/CookUs/App.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = CookUs.App.xaml
 build_metadata.AdditionalFiles.TargetPath = App.xaml
 build_metadata.AdditionalFiles.RelativePath = App.xaml
 
-[a:/A_Dossiers/Documents/Etudes/Université/Semestre 5 INFO/C\#.NET/Recipes-MobileApp/CookUs/CookUs/AppShell.xaml]
+[c:/Users/gaeta/Documents/Semestre 5 INFO/C\#.NET/Recipes-MobileApp/CookUs/CookUs/AppShell.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = CookUs.AppShell.xaml
 build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
 build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
 
-[a:/A_Dossiers/Documents/Etudes/Université/Semestre 5 INFO/C\#.NET/Recipes-MobileApp/CookUs/CookUs/Platforms/Android/AndroidView/AndroidCart.xaml]
+[c:/Users/gaeta/Documents/Semestre 5 INFO/C\#.NET/Recipes-MobileApp/CookUs/CookUs/Platforms/Android/AndroidView/AndroidCart.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = CookUs.Platforms.Android.AndroidView.AndroidCart.xaml
 build_metadata.AdditionalFiles.TargetPath = Platforms\Android\AndroidView\AndroidCart.xaml
 build_metadata.AdditionalFiles.RelativePath = Platforms\Android\AndroidView\AndroidCart.xaml
 
-[a:/A_Dossiers/Documents/Etudes/Université/Semestre 5 INFO/C\#.NET/Recipes-MobileApp/CookUs/CookUs/Resources/Styles/Colors.xaml]
+[c:/Users/gaeta/Documents/Semestre 5 INFO/C\#.NET/Recipes-MobileApp/CookUs/CookUs/Resources/Styles/Colors.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = CookUs.Resources.Styles.Colors.xaml
 build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Colors.xaml
 build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Colors.xaml
 
-[a:/A_Dossiers/Documents/Etudes/Université/Semestre 5 INFO/C\#.NET/Recipes-MobileApp/CookUs/CookUs/Resources/Styles/Styles.xaml]
+[c:/Users/gaeta/Documents/Semestre 5 INFO/C\#.NET/Recipes-MobileApp/CookUs/CookUs/Resources/Styles/Styles.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = CookUs.Resources.Styles.Styles.xaml
 build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml
 build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Styles.xaml
 
-[a:/A_Dossiers/Documents/Etudes/Université/Semestre 5 INFO/C\#.NET/Recipes-MobileApp/CookUs/CookUs/View/AddRecipe.xaml]
+[c:/Users/gaeta/Documents/Semestre 5 INFO/C\#.NET/Recipes-MobileApp/CookUs/CookUs/View/AddRecipe.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = CookUs.View.AddRecipe.xaml
 build_metadata.AdditionalFiles.TargetPath = View\AddRecipe.xaml
 build_metadata.AdditionalFiles.RelativePath = View\AddRecipe.xaml
 
-[a:/A_Dossiers/Documents/Etudes/Université/Semestre 5 INFO/C\#.NET/Recipes-MobileApp/CookUs/CookUs/View/Cart.xaml]
+[c:/Users/gaeta/Documents/Semestre 5 INFO/C\#.NET/Recipes-MobileApp/CookUs/CookUs/View/Cart.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = CookUs.View.Cart.xaml
 build_metadata.AdditionalFiles.TargetPath = View\Cart.xaml
 build_metadata.AdditionalFiles.RelativePath = View\Cart.xaml
 
-[a:/A_Dossiers/Documents/Etudes/Université/Semestre 5 INFO/C\#.NET/Recipes-MobileApp/CookUs/CookUs/View/Home.xaml]
+[c:/Users/gaeta/Documents/Semestre 5 INFO/C\#.NET/Recipes-MobileApp/CookUs/CookUs/View/Home.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = CookUs.View.Home.xaml
 build_metadata.AdditionalFiles.TargetPath = View\Home.xaml
 build_metadata.AdditionalFiles.RelativePath = View\Home.xaml
 
-[a:/A_Dossiers/Documents/Etudes/Université/Semestre 5 INFO/C\#.NET/Recipes-MobileApp/CookUs/CookUs/View/RecipesListPage.xaml]
+[c:/Users/gaeta/Documents/Semestre 5 INFO/C\#.NET/Recipes-MobileApp/CookUs/CookUs/View/RecipesListPage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = CookUs.View.RecipesListPage.xaml
 build_metadata.AdditionalFiles.TargetPath = View\RecipesListPage.xaml
 build_metadata.AdditionalFiles.RelativePath = View\RecipesListPage.xaml
 
-[a:/A_Dossiers/Documents/Etudes/Université/Semestre 5 INFO/C\#.NET/Recipes-MobileApp/CookUs/CookUs/View/ViewRecipePage.xaml]
+[c:/Users/gaeta/Documents/Semestre 5 INFO/C\#.NET/Recipes-MobileApp/CookUs/CookUs/View/ViewRecipePage.xaml]
 build_metadata.AdditionalFiles.GenKind = Xaml
 build_metadata.AdditionalFiles.ManifestResourceName = CookUs.View.ViewRecipePage.xaml
 build_metadata.AdditionalFiles.TargetPath = View\ViewRecipePage.xaml
