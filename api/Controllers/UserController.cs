@@ -23,29 +23,45 @@ namespace api.Controllers
         [HttpGet]
         public ActionResult Connect(string login, string password)
         {
-            var res = Ok(_map.Map<UserConnectedReadDTO>(_dataStore.Connect(login, password)));
-            //because whe change the token, we need to save the changes
+            User u = _dataStore.Connect(login, password);
+            if (u == null)
+                return NotFound();
+            UserConnectedReadDTO userConnected = _map.Map<UserConnectedReadDTO>(u);
+            //because we change the token, we need to save the changes
             _dataStore.SaveChanges();
-            return res;
+            return Ok(userConnected);
         }
 
         [HttpGet("{login}", Name = nameof(GetUser))]
         public ActionResult GetUser(string login)
         {
-            return Ok(_map.Map<UserReadDTO>(_dataStore.GetUserInfos(login)));
+            User user = _dataStore.GetUserInfos(login);
+            if (user == null)
+                return NotFound();
+            return Ok(_map.Map<UserReadDTO>(user));
         }
 
         [HttpPost]
         public ActionResult AddUser(UserWriteDTO userDTO)
         {
             User user = _map.Map<User>(userDTO);
+            if (_dataStore.GetUserInfos(user.Login) != null)
+                return BadRequest();
+            
             _dataStore.AddUser(user);
             _dataStore.SaveChanges();
-            // return CreatedAtRoute(nameof(GetUser), new {
-            //     login = user.Login, password = user.Password
-            //     }, new {
-            //     Login = user.Login, Password = user.Password
-            //     });
+            //return CreatedAtRoute(nameof(Connect), new {login = user.Login, password = user.Password}, _map.Map<UserConnectedReadDTO>(user));
+            return Ok();
+        }
+
+        [HttpDelete("{userToken}", Name = nameof(DeleteUser))]
+        public ActionResult DeleteUser(string userToken)
+        {
+            User user = _dataStore.GetUserByToken(userToken);
+            if (user == null)
+                return NotFound();
+            _dataStore.DeleteUser(user);
+            _dataStore.SaveChanges();
             return Ok();
         }
     }

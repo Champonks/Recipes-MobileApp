@@ -1,6 +1,7 @@
 using api.Contexts;
 using api.Model;
 using api.Utilities;
+using Microsoft.EntityFrameworkCore;
 
 namespace api.Datastores
 {
@@ -49,16 +50,25 @@ namespace api.Datastores
             _context.Users.Add(user);
         }
 
+        public void DeleteUser(User user)
+        {
+            _context.Users.Remove(user);
+        }
+
 //------------------Recipe------------------//
 
+        public Ingredient GetIngredientById(int id)
+        {
+            return _context.Ingredients.FirstOrDefault<Ingredient>(i => i.Id == id);
+        }
         public IEnumerable<Recipe> GetAllRecipes()
         {
-            return _context.Recipes;
+            return _context.Recipes.Include(rec => rec.Ingredients).Include(rec => rec.Steps).Include(rec => rec.Author);
         }
 
         public Recipe GetRecipeById(int id)
         {
-            return _context.Recipes.FirstOrDefault<Recipe>(r => r.Id == id);
+            return _context.Recipes.Include(rec => rec.Ingredients).Include(rec => rec.Steps).Include(rec => rec.Author).FirstOrDefault<Recipe>(r => r.Id == id);
         }
 
         public IEnumerable<Recipe> GetSeasonalRecipes(int count) {
@@ -81,7 +91,7 @@ namespace api.Datastores
                 season = CookingSeason.Winter;
             }
             //get 'count' recipes from the current season or all season
-            return _context.Recipes.Where(r => (r.RecipeSeason == season) || (r.RecipeSeason == CookingSeason.All)).Take(count).ToList();
+            return _context.Recipes.Include(rec => rec.Ingredients).Include(rec => rec.Steps).Include(rec => rec.Author).Where(r => (r.RecipeSeason == season) || (r.RecipeSeason == CookingSeason.All)).Take(count).ToList();
         }
         public void AddRecipe(Recipe recipe)
         {
@@ -93,22 +103,6 @@ namespace api.Datastores
             _context.Recipes.Remove(r);
         }
 
-        public Ingredient GetIngredientById(int id)
-        {
-            System.Console.WriteLine(_context.Ingredients.FirstOrDefault<Ingredient>(i => i.Id == id).Name);
-            //_context.Ingredients.FirstOrDefault<Ingredient>(i => i.Id == id)
-            return new Ingredient() { Id = 1, Name = "test", Quantity = "200g", RecipeId = 1 };
-        }
-        public IEnumerable<Ingredient> GetIngredientsByRecipeId(int recipeId)
-        {
-            return _context.Ingredients.Where(i => i.RecipeId == recipeId);
-        }
-
-        public IEnumerable<Step> GetStepsByRecipeId(int recipeId)
-        {
-            return _context.Steps.Where(s => s.RecipeId == recipeId);
-        }
-
 //------------------Cart------------------//
 
         public IEnumerable<CartItem> GetCartItems(string userToken)
@@ -117,7 +111,7 @@ namespace api.Datastores
             if (user == null)
                 return null;
             //make a correspondance between user login in cart and user token in user table
-            return _context.Cart.Where(c => c.UserLogin == user.Login);
+            return _context.Cart.Include(cart => cart.Ingredient).Where(c => c.UserLogin == user.Login);
         }
 
         public CartItem GetCartItemById(int id)
@@ -130,11 +124,6 @@ namespace api.Datastores
             return _context.Cart.Where(c => ids.Contains(c.Id));
         }
 
-        public void AddCartItem(CartItem cartItem)
-        {
-            _context.Cart.Add(cartItem);
-        }
-
         public void AddCartItems(IEnumerable<CartItem> cartItems)
         {
             _context.Cart.AddRange(cartItems);
@@ -144,13 +133,7 @@ namespace api.Datastores
         {
             _context.Cart.Remove(cartItem);
         }
-
-        public void DeleteCartItems(IEnumerable<CartItem> cartItems)
-        {
-            _context.Cart.RemoveRange(cartItems);
-        }
-
-
+        
 
         public void SaveChanges()
         {
